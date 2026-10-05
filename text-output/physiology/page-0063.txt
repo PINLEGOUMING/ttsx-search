@@ -1,0 +1,53 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ 4.酪氨酸激酶受体（受体型酪氨酸激酶）TKR/RTK（受体本身有酪氨酸激酶的活性）
+
+ 配体
+ 狠起来连 受体
+ 自己都搞 ((()
+ 酪氨酸蛋白激酶
+ ↓
+ 蛋白质的Tyr发生磷酸化
+
+ （1）配体：胰岛素、生长因子（如胰岛素样生长因子insulin-like growth factor,IGF、表皮
+
+ 生长因子Epidermal growth factor,EGF）老医生
+
+ 需注意IGF 主要来自生长激素，所以生长激素既可经TKAR、又可通过产生IGF 经TKR
+ 生长激素（配体）→sIGF（配体） 生长激素 IGF TKR
+ TKAR- TKAR TKR
+ （2）以EGF 为例，介绍酪氨酸激酶受体通路 I JAK JAK 膜 蛋白质- P 表皮生长因子EGF
+   （EGFR） STAT-sP
+ （蛋白质）
+ 酪氨酸激酶TRK
+ P EGFR自身磷酸化
+“PI对应PI，3对应3，PK必AK”
+
+ PI3K SH2 Grb2 衔接/接头蛋白 SH3
+ PIP3（第二信使）
+ SOS 鸟苷酸交换蛋白/GEF/鸟苷酸释放蛋白/GRF（富含脯氨酸）
+（丝/苏氨酸蛋白激酶） PKB/AKT PI 对应PI，3 对应3，PK 必AK
+ RAS-GDP→RAS-GTP 小G蛋白
+
+ RAF/MAPKKK
+
+ MEK/MAPKK吉尔救RAS丝/苏氨酸激酶咳咳咳 “吉尔救RAS咳咳咳”
+ sss级联反应 的顺序 “RRME的顺序” RRME
+ ERK/MAPK
+ （丝裂原活化的蛋白激酶） （EGFR）
+ 蛋白质的酪氨酸- P
+ 配体 调节生长、s增殖、s分化 酪氨酸激酶
+ ①EGF 结合EGFR→激活EGFR 自带的酪氨酸激酶活性→使受体自身的酪氨酸发生磷酸化
+ 酪氨酸激酶受体 SH2:s识别磷酸化的酪氨酸ss“老二逼” Grb2
+ SH3:s识别富含脯氨酸ss “富不过三代”
+ ②Grb2 是衔接蛋白（接头蛋白），它通过重要的结构域（蛋白质中发挥特殊功能的区域）
+
+ SH2、SH3 起着承上启下的作用——SH2 识别结合磷酸化的酪氨酸如EGFR、SH3 识别结合
+ EGF
+ 富含脯氨酸的蛋白质如SOS 救命啊富不过三代
+ EGFR- P （酪氨酸的磷酸化）
+ SH2 Grb2
+ - 9 - SH3
+ SOS（富含脯氨酸）
+
+ ⾼分经验 | 学习⽅法 | 笔记勘误 | 公众号：月落星沉西综笔记 65

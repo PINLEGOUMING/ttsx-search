@@ -1,0 +1,26 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ 三、真核与原核翻译起始阶段的差别
+
+ 原核XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX真核
+
+翻译起始复合物XXXXXXXXXXXXXXX30+50=70SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX40+60=80SX
+
+ fMet Met
+ 起始氨酰tRNAXXXXXXXXXXXXXXtRNAXXXX（甲酰化）XXXXXXXXXXXXXXXXXXXXXXXXXXtRNA i
+ （i代表是起始密码子AUG编码的甲硫氨酸）
+
+ 起始:IF1、2、3 eIF种类多
+ Tu α(类似EF-Tu)0 蛋白因子 延长:EF-T 、EF-G eEF1 Ts βγ(类似EF-Ts)、eEF2(类似EF-G)
+ “兔斯基” 终止:RF1、2、3 eRF
+
+ 小亚基先与mRNA结合 小亚基先与起始氨酰tRNA结合
+ 顺序
+ 再与起始氨酰tRNA结合 再与mRNA结合（有加工修饰的过程）
+
+ ①5端帽子 000016SrRNA识别
+ ②3端尾巴mRNA与核糖体定位 S-D序列RBS：AGGAGG - 5 -
+ ③eIF4B0000“衣帽帆布”0 （mRNA起始密码子上游）
+ ④eIF4F复合物(其中eIF4E是帽子结合蛋白)
+
+ 150

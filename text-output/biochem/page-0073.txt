@@ -1,0 +1,42 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ 糖代谢和核苷酸代谢
+ 若H在胞浆生成需要穿梭进入线粒体
+ UDPGX 脑/骨骼肌：α-磷酸甘油-磷酸二羟丙酮穿梭（FADH2）
+ 心肝肾：苹果酸-天冬氨酸穿梭（NADH）
+ 糖原 G-1-P 乳酸
+
+ GXXXXXXXXXG-6-PXXXXXXXXXXXXXXXXX丙酮酸
+ 乙酰CoA
+ ↓ 氧化磷酸化
+ 磷酸戊糖途径 TCAX→XNADH+H+XXXXXXXXXXXH2O
+ FADH2
+ CO2 ADPXXATP
+ 脂肪酸
+ 磷酸核糖XXXXXNADPHX 胆固醇
+ PRPP合成酶 脱氧核苷酸等
+ Gln
+ PRPP 天冬氨酸氨基甲酰转移酶 CPS-II
+ 乳清酸 氨基甲酰天冬氨酸 CPS Gln+CO2+ATP PRPP酰胺
+ PRA 转移酶 (含嘧啶环)
+ Gln
+ IMP
+
+ UMP
+
+氧化磷酸化机制
+电子传递势能→复合体I、III、IV将线粒体基质的H泵到膜间隙→建立H势能→H回流到基质释放势能→合成ATP
+
+ 【补救合成】
+ UX→XUMP AX→XAMPXXXAPRT
+PRPP TX→XdTMP 嘧啶PRT PRPP IX→XIMP
+ HGPRT→自毁容貌综合征
+ 乳清酸X→XOMP（乳清酸核苷酸） GX→XGMP
+
+ 腺嘌呤核苷 腺苷激酶
+ 尿嘧啶核苷 +磷酸 尿苷激酶
+ 脱氧胸腺嘧啶 胸苷激酶→恶性肿瘤活性高
+
+ - 5 -
+
+ 高分经验 | 学习方法 | 笔记勘误 | 公众号：月落星沉西综笔记 75

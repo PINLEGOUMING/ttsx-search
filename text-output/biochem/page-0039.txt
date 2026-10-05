@@ -1,0 +1,27 @@
+甘油糖异生：
+ NADH
+ 甘油激酶 2分子甘油 Xα-磷酸甘油XXXXXXXXXXX3-磷酸甘油醛XXXXXXXXXXX磷酸二羟丙酮XXXXXXXXXXXF-1，6-DPXXX......
+ I CHOI C-OHI -ATP C-OH
+ C-OHI C-OHI C=OI
+ C-OH-0P C-OH-0P C-OH-0P
+
+ 甘油分解产能：
+ NADH NADH
+ 甘油激酶胞浆： 甘油 Xα-磷酸甘油XXXXXXXXX磷酸二羟丙酮XXXXXXXXXXX3-磷酸甘油醛XXXXXXXXX1，3-二磷酸甘油酸
+ -ATP 1.5（脑、骨骼肌） 1.5（脑、骨骼肌）
+ 或X 或X
+ 2.5（心、肝、肾） 2.5（心、肝、肾）
+
+ 3-磷酸甘油酸XXXXXXXX2-磷酸甘油酸XXXXXXXXXPEPXXXXXXXXX丙酮酸
+ +1 +1
+ 底物水平磷酸化 底物水平磷酸化
+
+ NADH 3次脱NADH=2.5×3=7.5
+线粒体： 丙酮酸XXXXXXXXXXXXXX乙酰CoAXXXXXXXXXXXXX三羧酸循环+10 1次脱FADH2=1.5
+ +2.5
+ 1次底物水平磷酸化=1 （已经在线粒体中故无需按部位讨论）
+
+ (-1)+1.5+1.5+1+1+2.5+10=16.5X或X(-1)+2.5+2.5+1+1+2.5+10=18.5
+
+ 高分经验 | 学习方法 | 笔记勘误 | 公众号：月落星沉西综笔记
+ 41

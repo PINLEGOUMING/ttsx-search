@@ -1,0 +1,51 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ （二）无氧氧化：葡萄糖→丙酮酸→乳酸
+ （1）糖酵解：葡萄糖→丙酮酸
+ 3-磷酸甘油醛XXXXXXX1，3-二磷酸甘油酸
+ 脱H=氧化 NADH+H （2）丙酮酸还原为乳酸
+ 加H=还原
+ 丙酮酸XXXXXXXXXXXX乳酸
+ 线粒体
+ 即胞质溶胶 （三）有氧氧化：葡萄糖→丙酮酸→乙酰CoA→CO2
+ （1）糖酵解（胞浆）：葡萄糖→丙酮酸
+ 脱羧
+ 产生CO2 COOHXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXCOO
+ （2）丙酮酸脱羧（线粒体）：丙酮酸→乙酰CoA、NADH+H+、CO2 脱氢又脱羧→氧化脱羧
+ 脱氢 threeXcycleXacid
+ （3）乙酰CoA 进入TAC/三羧酸/柠檬酸/Krebs 循环（线粒体）
+ “咏三羧酸循环ttsx：草酰乙酰成柠檬、异柠檬又成α 酮、琥酰琥酸延胡索、苹果落在草丛中”
+ 天冬氨酸转氨基
+ TAC必须从这里开始
+ C转移
+ NADH 草酰乙酸 乙酰CoA 三大营养物质在分解代谢时都要产生乙酰CoA
+ 三羧酸循环是从草酰乙酸和乙酰
+ CoA生成3个-COOH的柠檬酸开始的 柠檬酸合酶
+ 苹果酸 柠檬酸（含3个-COOH））
+
+ 异柠檬酸 延胡索酸
+ 异柠檬酸脱氢酶
+ “飞虎队” COOH NADH+H 脱氢又脱羧
+ FADH2 CH2 CO2
+ 双递氢体 CH2 H
+ C =O α-酮戊二酸 谷氨酸NH2-C-COOH 琥珀酸 转氨基/脱氨基 COOH CH2
+ CH2 α-酮戊二酸脱氢酶复合体
+ COOH 00(底物水平磷酸化)&ADP→ATP NADH+H 琥珀酰CoA 脱氢又脱羧
+ 或 CO2
+ 000000GDP→GTP
+
+ 注意：CO2来自草酰乙酸
+ 理论上来说脱下的CO2来自于乙酰
+ 1，3-二磷酸甘油酸→3-磷酸甘油酸XADP→ATP CoA，实际上来源于草酰乙酸
+底物水平磷酸化 磷酸烯醇式丙酮酸→丙酮酸XADP→ATP
+ 只有三个 琥珀酰CoA→琥珀酸XXADP→ATP “两虎-两种形式的能量”XX“两虎之争必产能”
+ GDP→GTP
+
+ “X1XXXXXXXXXXXXXXXXXXXXXXX2XXXXXXXXXXXXXXXXXXXXXXX3XXXXXXXXXXXXXXXXXXXXXXXXX4X”
+ XXXXX部位 XXXXXXX脱羧 关键酶 XXXXXXXXXXXX脱氢
+ XXX（线粒体） XX（C来源于草酰乙酸）
+ 底物水平磷酸化 异柠檬酸→α-酮戊二酸( 3次脱XXXXXXXXXXXXXX1次脱
+ 琥珀酰CoA α-酮戊二酸→琥珀酰CoA - 3 - NADHXXXXXXXXXXXXXXXFADH2
+ ATP或GTP 异柠檬酸→α-酮戊二酸 X琥珀酸→延胡索酸
+ α-酮戊二酸→琥珀酰CoAX “飞虎队” 琥珀酸
+ 苹果酸→草酰乙酸 5

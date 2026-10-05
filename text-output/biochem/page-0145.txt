@@ -1,0 +1,52 @@
+H 每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+ NH2-C-R
+ C=O 结合氨基酸
+ （三）载体——tRNA
+ OXH OH 脱水生成酯键
+
+ 转发这个转运RNA
+
+ 27 考研必转运！~
+ 二氢尿嘧啶
+
+ 结合
+ 结合 核糖体
+氨酰tRNA合成酶
+
+ 活化形式
+ 葡萄糖：G-6-P、G-1-P、UDPG
+ 脂肪酸：脂酰CoA
+ 氨基酸：氨酰-tRNA
+ 氨基酰-tRNA： （一种tRNA只能转运一种特定的氨基酸）
+ ①氨基酸的活化形式 1种氨基酸对应多个密码子→对应多个反密码子→对应多种tRNA
+ ②一种氨基酸通常与多种tRNA 特异结合（mRNA 密码子的简并性）
+ ③一种tRNA 只能转运一种特定氨基酸：如tRNATyr 表示特异转运酪氨酸的tRNA
+ ④一种tRNA 识别多种ttsx 密码子（摆动性决定了简并性）【回顾】赖氨酸有两种氨酰-tRNA合成酶
+ ⑤氨基酰-tRNA 合成酶决定氨基酸与tRNA 结合的准确性：该酶对氨基酸和tRNA 都有高度特异
+ 性、校对活性（水解酯键） O H
+ 3’-CCA-OHXHO-C-C-NH2 RNA 蛋白质
+ 脱水生成酯键 R （四）场所——核糖体/核蛋白体 核糖体 rRNA ✓
+ ✓ 1.构成：rRNA+蛋白质 剪接体 snRNA
+ ✓ 28S0rRNA 核仁小RNA snoRNA 23S0rRNA
+ 大亚基 50S 蛋白质 蛋白质 5.8S0rRNA0 60S
+ 5S0rRNA
+ “357” 70S 5S0rRNA 80S
+ 含有RNA的酶: 小亚基 30S 蛋白质XX16SXrRNA 蛋白质XX18SXrRNA 40S
+ 核酶（具有催化作用的RNA）
+ 2.核糖体功能位点（原核和真核均有） 端粒酶（RNA+逆转录酶+协同蛋白）
+ amino ①A 位/受位：氨酰tRNA 进位处 而RNA聚合酶和RNase本质为蛋白质
+ peptide②P 位/供位：肽酰tRNA 结合处
+ empty ③E 位/排位：空载tRNA 脱离核糖体前的暂时停留处、将释放tRNA
+
+ …
+
+ tRNA tRNA
+氨酰tRNA 肽酰tRNA
+
+ 核小RNA=snRNA
+ 小结核酶ribozyme(催化RNA)： 核小核糖核蛋白snRNP
+ 蛋白质 ①转肽酶/肽酰转移酶:原核23S rRNA、真核28S rRNA - 2 - hnRNA剪接部位
+ ② RNase P:切除前体tRNA5’端多余核苷酸“5P综合征” snoRNA=核仁小RNA 核仁小核糖核蛋白snoRNP
+ ③ 自身剪接内含子:组I型、组II型内含子 蛋白质
+ 45SXrRNA加工修饰的部位 ④XsnRNA
+ 147

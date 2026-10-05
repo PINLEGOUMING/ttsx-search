@@ -1,0 +1,33 @@
+胰岛素
+   每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+ IR-sPs（磷酸化的酪氨酸） 催化
+ 底物sssssssssssssss产物 （3）再介绍胰岛素（其实是复习） （酪氨酸激酶）
+ IRS-sPs（含有PTB结构域） 胰岛素 IRS IRS-sP
+   IR（受体） 胰岛素结合IR→激活IR 自带的酪氨酸激酶活性→使受体自身的酪氨酸发生磷酸化
+     膜 【对比】 胰高血糖素 酪氨酸激酶TRK酪氨酸激酶
+ AC
+ 胰岛素受体底物 IRS-sP 7
+ G ATP cAMP （insulinsreceptors 胰岛素受体底物（insulinPI3K receptor substrate,IRS）
+ substrate，IRS） Grb2
+ PKA
+【注意】 PIP3（第二信使）
+EGFR是受体自身发生 SOS
+ 糖原合酶↓ 磷酸化酶↑磷酸化
+胰岛素是胰岛素受体 RAS -GTP
+ PKB/AKT（蛋白激酶）的底物发生磷酸化
+ 糖原合成↓ 糖原分解↑
+ RAF/MAPKKK
+
+ 蛋白质-sP
+ MEK/MAPKK PI3K/AKT 通路：调节生长、增殖、分化
+ 血糖↑
+ 【注意】： 胰岛素降糖（VS 胰高血糖素经GPCR 升糖）
+ ERK/MAPK 胰岛素降糖：PI3K/AKT通路
+ 胰高血糖素升糖：GPCR通路
+ 蛋白质-sP 但PI3K/AKT通路不只是降糖，也与生长有关，其他生长因子也可以走
+
+ SH2SH3
+
+ - 12 -
+
+ ⾼分经验 | 学习⽅法 | 笔记勘误 | 公众号：月落星沉西综笔记 68

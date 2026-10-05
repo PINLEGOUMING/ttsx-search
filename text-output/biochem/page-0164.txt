@@ -1,0 +1,43 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ II类
+ 4.RNApol Ⅱ结合启动子的具体过程
+ （1）参加该过程的蛋白质
+ TF Ⅱ（通用/基本转录因子） 结合启动子、RNApol Ⅱ
+ 上游因子 结合启动子上游元件
+ 转录激活因子（如可诱导因子） 结合增强子
+ 中介子、TAF 在上游因子、转录激活因子与RNApol Ⅱ-TF Ⅱ复合物
+ 之间起中介和桥梁作用
+
+ TBP亚基TATA0binding0protein:结合TATA盒(II类启动子核心序列)0
+ TFIID(蛋白质)
+ TAF亚基TBP0associated0factor:辅助TBP
+ II类启动子 DNA
+
+ （2）具体步骤 (以下省略了TFII)
+ 顺序：TF ⅡD→A→B→F-RNApol Ⅱ→E→H “哒哒阿布拉二胡一哈”
+ D的TBP亚基结合TATA盒(DNA上II类启动子的核心序列) “D-TA”
+ A 加强、B 稳定TF ⅡD（TBP）-DNA
+ F 结合RNApol Ⅱ “二胡”
+ B 募集RNApol Ⅱ-F VSX原核解开双链：β’亚基
+ E 募集H 与上述结合 形成闭合转录起始复合体/转录起始前复合体
+ H 使闭合→开放转录起始复合体 打开双链 H 有ATP 酶、解旋酶、蛋白激酶活性
+ E 结合单链DNA 以稳定ttsx 解链状态 E-“一”单 COOH端,terminal,domain
+ H 的蛋白激酶活性使RNApol Ⅱ的CTD 磷酸化 CTD：RNApol Ⅱ的羧基末端结构域
+“拨开关” →RNApol Ⅱ开始移动至转录起始点转录 H：耗能、打开双链、让RNApolXII磷酸化
+ H,→ 进入延长阶段 延长阶段 F 仍然结合RNApol Ⅱ
+
+ II类启动子核心序列
+
+ 结合DNA单链
+ 解开双链、让RNApolII动起来
+ （解旋酶）XX(蛋白激酶:CTD磷酸化)
+
+ CTD P
+ 羧基末端结构域
+
+ IIE00IIH IIF(把RNApolII带过来)
+ (((((((((((((((((Dna(B蛋白：原核复制 （加强）IIA TFIID(TBP) RNA - 9 - + （募集、稳定）IIB polII (((((((((((((((((ρ因子：原核转录终止 TATA 有解旋酶活性
+ (((((((((((((((((TFIIH：真核转录起始
+ XXXXXXXXXXXXXXXXXXRNA聚合酶的β‘亚基
+ (II类启动子核心序列) 166

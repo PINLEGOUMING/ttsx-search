@@ -1,0 +1,67 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ 胰高血糖素（配体）（第一信使）
+C.胰岛素 （受体） AC （酶）【G蛋白效应器】
+D.神经生长因子 G α-GTP -
+ G蛋白 ATP
+ βγ cAMP （第二信使）
+ 生物化学 GPCR 蛋白激酶：蛋白质里的氨基酸磷酸化
+ （七跨膜受体） PKA 磷酸化
+2013N38 A G 蛋白耦联受体信号的主要途径是
+ 糖原合酶sssssss磷酸化酶P P
+A.cAMP-PKA 信号途径 失活
+ 磷酸化酶P
+B.酪氨酸激酶受体信号途径 酶联型受体 活化
+C.雌激素-核受体信号途径 核受体 糖原合成↓，分解↑
+D.丝/苏氨酸激酶受体信号途径 酶联型受体
+ 血糖↑ （效应）
+
+2014N39 A 在经典的信号转导途径中，受G 蛋白激活直接影响的酶是
+A.PKC G蛋白效应器：s 配体 磷脂酶c
+ PLC DG/DAG
+ -B.MAPK AC、PLC、PDE G α-GTP
+ G蛋白 IP3 PKCC.JAK βγ Ca2+
+ Ca2+-CaMD.AC Ca2+
+ Ca2+ Ca2+ 钙调蛋白 Ca2+ IP3-R
+ 内质网 （钙通道）
+2014N159 X 参与受体型TPK-RAS-MAPK 途径的分子有
+ 表皮生长因子EGF
+A.RAS 蛋白 “吉尔救RAS 咳咳咳” EGFR-sPssss
+B.Grb2
+ 酪氨酸激酶TPK
+C.EGF 受体 P
+D.Raf 蛋白 PI3K
+ SH2 Grb2 接头蛋白 SH3
+
+2015N39 A 以下蛋白质中，属于小G 蛋白的是 SOSsI PIP3（第二信使）
+A.异三聚体G 蛋白
+ RAS-GDP→RAS-GTP
+B.Grb2 PKB/AKT（蛋白激酶）
+C.MAPK RAF/MAPKKK
+D.Ras MEK/MAPKK
+
+ ERK/MAPK
+2015N159 X 以下选项中，可参与GPCR 通路的分子有 配体
+A.G 蛋白 -
+ G G蛋白B.cAMP
+C.FAD 递氢体 AC
+ ↓
+D.AC cAMP
+ ↓
+ PKA
+
+2016N160 X 参与G 蛋白耦联受体介导信号转导通路的分子有
+A.7 次跨膜受体
+B.G 蛋白
+C.腺苷酸环化酶
+D.CMP 有cAMP、cGMP
+
+2017N27 A 以下关于蛋白激酶的叙述中，正确的是
+A.底物可以是脂类物质 蛋白质、氨基酸
+B.可使亮氨酸残基磷酸化 “老鼠屎拌蒜尖”
+C.蛋白质磷酸化后活性改变
+
+ - 18 -
+【答案】：sAs、sDs、sABCDs、sDs、sABDs、sABCs、sC
+
+ 74

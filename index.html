@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+<meta name="theme-color" content="#ffffff" />
+<title>TTSX讲义-思维导图</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+    background: #f5f6f8; color: #1f2329; display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ============================================================
+     部分 1：搜索栏
+     ============================================================ */
+  header {
+    display: flex; gap: 8px; align-items: center;
+    padding: 10px 12px; background: #fff;
+    border-bottom: 1px solid #e3e6eb; flex: none;
+    flex-wrap: wrap;
+  }
+  header h1 { font-size: 14px; margin: 0; white-space: nowrap; font-weight: 700; }
+  #searchInput {
+    flex: 1; min-width: 120px; padding: 9px 12px;
+    border: 1px solid #d0d5dd; border-radius: 8px;
+    font-size: 15px; outline: none; transition: .15s;
+  }
+  #searchInput:focus { border-color: #2f6fed; box-shadow: 0 0 0 3px rgba(47,111,237,.15); }
+  #searchBtn {
+    padding: 9px 18px; background: #2f6fed; color: #fff;
+    border: none; border-radius: 8px; font-size: 14px;
+    cursor: pointer; transition: .15s; white-space: nowrap;
+  }
+  #searchBtn:active { background: #2560d8; }
+  #status {
+    font-size: 12px; color: #6b7280; white-space: nowrap;
+    flex-basis: 100%; text-align: right;
+  }
+
+  /* ============================================================
+     部分 2-7：分类标签（全部 + 5 个科目）
+     ============================================================ */
+  nav.tabs {
+    display: flex; gap: 2px; padding: 6px 10px 0;
+    background: #fff; border-bottom: 1px solid #e3e6eb;
+    overflow-x: auto; flex: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs button {
+    padding: 8px 12px; border: none; background: transparent;
+    font-size: 13px; color: #4a5160; cursor: pointer;
+    border-bottom: 2px solid transparent; white-space: nowrap;
+    transition: .15s; flex: none;
+  }
+  nav.tabs button.active {
+    color: #2f6fed; border-bottom-color: #2f6fed; font-weight: 600;
+  }
+
+  /* ============================================================
+     主体
+     ============================================================ */
+  main { flex: 1; display: flex; min-height: 0; position: relative; }
+
+  /* 结果面板 */
+  #resultsPanel {
+    width: 380px; flex: none; background: #fff;
+    border-right: 1px solid #e3e6eb;
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  #resultsMeta {
+    padding: 10px 14px; font-size: 12px; color: #6b7280;
+    border-bottom: 1px solid #eef0f3; flex: none;
+  }
+  #results { overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
+  .result-item {
+    padding: 12px 14px; border-bottom: 1px solid #f0f2f5; cursor: pointer;
+  }
+  .result-item:active { background: #f6f8fc; }
+  .result-item.active { background: #eaf1ff; box-shadow: inset 3px 0 0 #2f6fed; }
+  .result-head {
+    display: flex; justify-content: space-between; gap: 8px;
+    font-size: 12px; color: #6b7280; margin-bottom: 6px;
+  }
+  .result-file {
+    color: #2f6fed; font-weight: 600;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .result-page { flex: none; background: #eef1f5; border-radius: 4px; padding: 1px 7px; }
+  .result-snippet {
+    font-size: 13px; line-height: 1.65;
+    color: #3c4149; word-break: break-word;
+  }
+  mark { background: #ffe58f; color: inherit; border-radius: 2px; padding: 0 1px; }
+
+  /* 查看器 */
+  #viewerPane { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+  #viewerBar {
+    background: #fff; border-bottom: 1px solid #e3e6eb;
+    flex: none; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  #viewerBar .row {
+    display: flex; align-items: center; gap: 6px;
+  }
+  #viewerBar .title {
+    flex: 1; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+    font-size: 13px; font-weight: 600;
+  }
+  #viewerBar button {
+    padding: 6px 12px; border: 1px solid #d0d5dd; background: #fff;
+    border-radius: 6px; cursor: pointer; font-size: 12px;
+    white-space: nowrap; transition: .15s;
+  }
+  #viewerBar button:active:not(:disabled) { background: #f2f4f8; }
+  #viewerBar button:disabled { opacity: .4; cursor: not-allowed; }
+  #backBtn {
+    padding: 7px 12px; border: 1px solid #d0d5dd; background: #fff;
+    border-radius: 6px; cursor: pointer; font-size: 13px;
+    white-space: nowrap; flex: none;
+  }
+  #backBtn:active { background: #f2f4f8; }
+
+  #pageInput {
+    width: 62px; padding: 6px 8px;
+    border: 1px solid #d0d5dd; border-radius: 6px;
+    font-size: 13px; text-align: center; outline: none;
+  }
+  #pageInput:focus { border-color: #2f6fed; box-shadow: 0 0 0 3px rgba(47,111,237,.15); }
+  #pageTotal { font-size: 12px; color: #6b7280; white-space: nowrap; }
+  #goBtn {
+    padding: 6px 12px; background: #2f6fed; color: #fff;
+    border: none; border-radius: 6px; font-size: 12px; cursor: pointer;
+  }
+  #goBtn:active { background: #2560d8; }
+
+  #viewerScroll {
+    flex: 1; overflow: auto; padding: 16px; text-align: center;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+  #pageImg {
+    max-width: 100%; height: auto; display: inline-block;
+    background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.13);
+    vertical-align: top;
+  }
+
+  .empty {
+    padding: 44px 20px; text-align: center;
+    color: #9aa1ab; font-size: 13px;
+  }
+
+  /* ============================================================
+     手机端：单栏切换
+     ============================================================ */
+  @media (max-width: 768px) {
+    header { padding: 8px 10px; }
+    header h1 { font-size: 13px; }
+    #searchBtn { padding: 9px 14px; font-size: 13px; }
+    #status { display: none; }
+
+    main { position: relative; }
+    #resultsPanel { width: 100%; border-right: none; }
+    #viewerPane {
+      position: absolute; inset: 0; z-index: 10;
+      background: #f5f6f8;
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      pointer-events: none;
+    }
+    body.viewer-open #viewerPane {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    body.viewer-open #resultsPanel { visibility: hidden; }
+
+    #viewerScroll { padding: 8px; }
+    #pageImg { max-width: 100%; box-shadow: none; }
+
+    #viewerBar { padding-top: max(8px, env(safe-area-inset-top)); }
+    #viewerScroll { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+
+    #backBtn { display: block; }
+  }
+
+  @media (min-width: 769px) {
+    #backBtn { display: none; }
+  }
+
+  @media (max-width: 380px) {
+    header h1 { font-size: 12px; }
+    #searchBtn { padding: 9px 10px; }
+    #pageInput { width: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 部分 1：标题 + 搜索按钮 ============ -->
+<header>
+  <h1>TTSX讲义-思维导图</h1>
+  <input id="searchInput" type="search" enterkeyhint="search"
+         placeholder="输入关键词…" autocomplete="off" />
+  <button id="searchBtn">搜索</button>
+  <span id="status">正在加载索引…</span>
+</header>
+
+<!-- ============ 部分 2-6：全部 + 5 个科目（已移除思维导图） ============ -->
+<nav class="tabs" id="tabs">
+  <button data-cat="all"        class="active">全部</button>
+  <button data-cat="physiology">生理学</button>
+  <button data-cat="pathology">病理学</button>
+  <button data-cat="internal">内科学</button>
+  <button data-cat="surgery">外科学</button>
+  <button data-cat="biochem">生物化学</button>
+</nav>
+
+<main>
+  <aside id="resultsPanel">
+    <div id="resultsMeta">输入关键词开始搜索</div>
+    <div id="results">
+      <div class="empty">支持多词，如「心电图 心律失常」</div>
+    </div>
+  </aside>
+
+  <section id="viewerPane">
+    <div id="viewerBar">
+      <div class="row">
+        <button id="backBtn">← 返回</button>
+        <span class="title" id="viewerTitle">未选择页面</span>
+      </div>
+      <div class="row">
+        <button id="prevBtn" disabled>← 上一页</button>
+        <input id="pageInput" type="number" min="1" value="1" inputmode="numeric" disabled />
+        <span id="pageTotal">/ -</span>
+        <button id="goBtn" disabled>跳转</button>
+        <button id="nextBtn" disabled>下一页 →</button>
+      </div>
+    </div>
+
+    <div id="viewerScroll">
+      <div class="empty" id="viewerHint">点击左侧搜索结果查看页面</div>
+      <img id="pageImg" hidden alt="" />
+    </div>
+  </section>
+</main>
+
+<script>
+/* ============================================================
+   文件清单（已移除思维导图）
+   ============================================================ */
+const FILES = [
+  { id: 'physiology', name: '生理学',   index: 'search-index/physiology.json', imgBase: 'images/physiology' },
+  { id: 'pathology',  name: '病理学',   index: 'search-index/pathology.json',  imgBase: 'images/pathology'  },
+  { id: 'internal',   name: '内科学',   index: 'search-index/internal.json',   imgBase: 'images/internal'   },
+  { id: 'surgery',    name: '外科学',   index: 'search-index/surgery.json',    imgBase: 'images/surgery'    },
+  { id: 'biochem',    name: '生物化学', index: 'search-index/biochem.json',    imgBase: 'images/biochem'    },
+];
+
+const MAX_TOTAL = 200;
+const IS_MOBILE = () => window.matchMedia('(max-width: 768px)').matches;
+
+const state = {
+  indexes: {},
+  category: 'all',
+  query: '',
+  results: [],
+  current: { fileId: null, pageNum: 0 },
+};
+
+const $ = (id) => document.getElementById(id);
+
+/* ============================================================
+   1. 加载索引
+   ============================================================ */
+async function loadAll() {
+  let done = 0;
+  await Promise.all(FILES.map(async (f) => {
+    try {
+      const res = await fetch(f.index);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      state.indexes[f.id] = await res.json();
+    } catch (e) {
+      console.error('索引加载失败', f.id, e);
+    }
+    done++;
+    $('status').textContent = `索引加载 ${done}/${FILES.length}`;
+  }));
+  const totalPages = Object.values(state.indexes)
+    .reduce((s, d) => s + (d.numPages || 0), 0);
+  $('status').textContent = `✅ 就绪 · ${totalPages} 页`;
+}
+
+/* ============================================================
+   2. 搜索工具
+   ============================================================ */
+function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function makeSnippet(text, idx, len, radius = 70) {
+  const start = Math.max(0, idx - radius);
+  const end   = Math.min(text.length, idx + len + radius);
+  let s = text.slice(start, end).replace(/\s+/g, ' ').trim();
+  if (start > 0) s = '…' + s;
+  if (end < text.length) s = s + '…';
+  return s;
+}
+
+function buildRegex(query) {
+  const terms = query.trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
+  if (!terms.length) return null;
+  return new RegExp(terms.join('|'), 'gi');
+}
+
+function highlight(text, regex) {
+  if (!regex) return escapeHtml(text);
+  regex.lastIndex = 0;
+  let html = '', last = 0, m;
+  while ((m = regex.exec(text)) !== null) {
+    if (m[0].length === 0) { regex.lastIndex++; continue; }
+    html += escapeHtml(text.slice(last, m.index));
+    html += '<mark>' + escapeHtml(m[0]) + '</mark>';
+    last = m.index + m[0].length;
+  }
+  html += escapeHtml(text.slice(last));
+  return html;
+}
+
+/* ============================================================
+   3. 执行搜索
+   ============================================================ */
+function doSearch() {
+  const q = $('searchInput').value.trim();
+  state.query = q;
+
+  if (!q) {
+    state.results = [];
+    render();
+    return;
+  }
+
+  const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const targetIds = state.category === 'all'
+    ? FILES.map(f => f.id)
+    : [state.category];
+
+  const out = [];
+
+  outer:
+  for (const fid of targetIds) {
+    const idx = state.indexes[fid];
+    if (!idx) continue;
+
+    for (const [pageNum, text] of idx.pages) {
+      const lower = text.toLowerCase();
+
+      let ok = true;
+      for (const t of terms) {
+        if (lower.indexOf(t) === -1) { ok = false; break; }
+      }
+      if (!ok) continue;
+
+      const firstIdx = lower.indexOf(terms[0]);
+      out.push({
+        fileId: fid,
+        fileName: idx.name,
+        pageNum,
+        snippet: makeSnippet(text, firstIdx, terms[0].length),
+      });
+
+      if (out.length >= MAX_TOTAL) break outer;
+    }
+  }
+
+  state.results = out;
+  render();
+}
+
+/* ============================================================
+   4. 渲染结果
+   ============================================================ */
+function render() {
+  const box  = $('results');
+  const meta = $('resultsMeta');
+  box.innerHTML = '';
+
+  if (!state.query) {
+    meta.textContent = '输入关键词开始搜索';
+    box.innerHTML = '<div class="empty">支持多词，如「心电图 心律失常」</div>';
+    return;
+  }
+  if (!state.results.length) {
+    meta.textContent = `“${state.query}” 无匹配`;
+    box.innerHTML = '<div class="empty">没有找到匹配内容</div>';
+    return;
+  }
+
+  const fileCount = new Set(state.results.map(r => r.fileId)).size;
+  meta.textContent = `找到 ${state.results.length} 条，分布 ${fileCount} 个文件`;
+
+  const regex = buildRegex(state.query);
+  const frag  = document.createDocumentFragment();
+
+  state.results.forEach((r, i) => {
+    const el = document.createElement('div');
+    el.className = 'result-item';
+    el.dataset.index = i;
+    el.innerHTML =
+      '<div class="result-head">' +
+        '<span class="result-file">' + escapeHtml(r.fileName) + '</span>' +
+        '<span class="result-page">第 ' + r.pageNum + ' 页</span>' +
+      '</div>' +
+      '<div class="result-snippet">' + highlight(r.snippet, regex) + '</div>';
+    el.addEventListener('click', () => openResult(i));
+    frag.appendChild(el);
+  });
+
+  box.appendChild(frag);
+}
+
+/* ============================================================
+   5. 点击结果 → 打开图片
+   ============================================================ */
+function openResult(i) {
+  const r = state.results[i];
+  if (!r) return;
+  state.current = { fileId: r.fileId, pageNum: r.pageNum };
+
+  document.querySelectorAll('.result-item').forEach((el) => {
+    el.classList.toggle('active', Number(el.dataset.index) === i);
+  });
+
+  showPage(r.fileId, r.pageNum);
+}
+
+function showPage(fileId, pageNum) {
+  const f   = FILES.find(x => x.id === fileId);
+  const idx = state.indexes[fileId];
+  if (!f || !idx) return;
+
+  const numPages = idx.numPages || idx.pages.length;
+  pageNum = Math.max(1, Math.min(numPages, pageNum));
+
+  state.current = { fileId, pageNum };
+
+  const img = $('pageImg');
+  img.hidden = false;
+  img.alt    = `${f.name} 第 ${pageNum} 页`;
+  img.src    = `${f.imgBase}/page-${String(pageNum).padStart(4, '0')}.webp`;
+
+  $('viewerHint').style.display = 'none';
+  $('viewerTitle').textContent = `${f.name} · 第 ${pageNum} 页`;
+
+  $('prevBtn').disabled = pageNum <= 1;
+  $('nextBtn').disabled = pageNum >= numPages;
+  $('pageInput').disabled = false;
+  $('goBtn').disabled = false;
+  $('pageInput').value = pageNum;
+  $('pageInput').max = numPages;
+  $('pageTotal').textContent = `/ ${numPages}`;
+
+  $('viewerScroll').scrollTop = 0;
+
+  if (IS_MOBILE()) {
+    document.body.classList.add('viewer-open');
+  }
+
+  preload(f.imgBase, pageNum - 1, numPages);
+  preload(f.imgBase, pageNum + 1, numPages);
+}
+
+function preload(imgBase, n, total) {
+  if (n < 1 || n > total) return;
+  const i = new Image();
+  i.src = `${imgBase}/page-${String(n).padStart(4, '0')}.webp`;
+}
+
+/* ============================================================
+   6. 翻页 / 跳转
+   ============================================================ */
+function goPrev() {
+  const { fileId, pageNum } = state.current;
+  if (fileId && pageNum > 1) showPage(fileId, pageNum - 1);
+}
+function goNext() {
+  const { fileId, pageNum } = state.current;
+  const idx = state.indexes[fileId];
+  if (!idx) return;
+  const total = idx.numPages || idx.pages.length;
+  if (pageNum < total) showPage(fileId, pageNum + 1);
+}
+function goToPage() {
+  const { fileId } = state.current;
+  const idx = state.indexes[fileId];
+  if (!idx) return;
+  const total = idx.numPages || idx.pages.length;
+  let n = parseInt($('pageInput').value, 10);
+  if (isNaN(n)) { $('pageInput').value = state.current.pageNum; return; }
+  n = Math.max(1, Math.min(total, n));
+  showPage(fileId, n);
+}
+
+/* ============================================================
+   7. 事件绑定
+   ============================================================ */
+$('searchBtn').addEventListener('click', () => {
+  doSearch();
+  $('searchInput').blur();
+});
+
+$('searchInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    doSearch();
+    $('searchInput').blur();
+  }
+});
+
+let searchTimer = null;
+$('searchInput').addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(doSearch, 200);
+});
+
+$('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-cat]');
+  if (!btn) return;
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.category = btn.dataset.cat;
+  doSearch();
+  if (IS_MOBILE()) document.body.classList.remove('viewer-open');
+});
+
+$('backBtn').addEventListener('click', () => {
+  document.body.classList.remove('viewer-open');
+});
+
+$('prevBtn').addEventListener('click', goPrev);
+$('nextBtn').addEventListener('click', goNext);
+$('goBtn').addEventListener('click', goToPage);
+
+$('pageInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    goToPage();
+    $('pageInput').blur();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+  if (e.key === 'ArrowLeft')  goPrev();
+  if (e.key === 'ArrowRight') goNext();
+});
+
+/* ============================================================
+   8. 手机端滑动翻页
+   ============================================================ */
+(function bindSwipe() {
+  const el = $('viewerScroll');
+  let x0 = 0, y0 = 0, t0 = 0;
+
+  el.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    x0 = e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+    t0 = Date.now();
+  }, { passive: true });
+
+  el.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    const dy = e.changedTouches[0].clientY - y0;
+    const dt = Date.now() - t0;
+
+    if (Math.abs(dx) < 60) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (dt > 600) return;
+
+    if (dx < 0) goNext();
+    if (dx > 0) goPrev();
+  }, { passive: true });
+})();
+
+/* ============================================================
+   9. 尺寸变化
+   ============================================================ */
+window.addEventListener('resize', () => {
+  if (!IS_MOBILE()) document.body.classList.remove('viewer-open');
+});
+
+/* ============================================================
+   10. 启动
+   ============================================================ */
+loadAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ SOS=GEF=GRF
+ ③SOS 富含脯氨酸，称为鸟苷酸交换因子/蛋白（GMP exchange factor,GEF）或鸟苷酸释放
+
+ 因子/蛋白（GMP releasing factor,GRF）。SOS 起着使RAS 释放GDP 而结合GTP（即GDP
+
+ 和GTP 作了交换）、从而激活RAS 的作用理顺啊理顺啊
+ EGF GRF/SOS
+ EGFR- P
+
+ SH2 [ Grb2
+ SH3
+ RAS SOS
+ GDP✘
+ RAS
+ GTP✔
+
+ 【串联】 一级结构：氨基酸组成和排列顺序 三级结构：所有原子空间结构
+ 蛋白质结构 四级结构：亚基之间空间关系 ④RAS VS G 蛋白：二级结构：局部主链空间结构
+ G 蛋白 RAS 蛋白 /小G蛋白
+ 结合GTP 是激活态、结合GDP 是失活态，自身有GTP 酶的活性
+ α、β、γ 三聚体（有四级结构） 仅有一条多肽链（只有三级结构）
+ 异三聚体G 蛋白 小G 蛋白、低分子量G 蛋白
+ GPCR TKR-RAS-MAPK
+
+ ⑤MAPK 是丝裂原活化的蛋白激酶套娃。需注意MAPK（ERK）、MAPKKK（RAF）是丝/
+
+ 苏氨酸激酶。因此在这条酪氨酸激酶受体途径中只有EGFR 才是酪氨酸激酶，
+
+ MAPKKK、MAPK 是丝/苏氨酸激酶，RAS 是GTP 酶。而MAPKK（MEK）比较特殊，
+
+ 它属于双重特异性蛋白激酶（使MAPK 的苏氨酸、酪氨酸发生磷酸化）
+
+ 配体
+
+ 酪氨酸蛋白激酶受体
+
+ 受体
+ EGF MAPKsKsK
+P -EGFR （酪氨酸蛋白激酶）
+ 富含脯 MAPKsK
+ 氨酸 Grb2 EGFR- P
+ （酪氨酸的磷酸化） MAPK
+ SOS
+
+ RAS/小G蛋白 （自带GTP酶活性）
+ 转录因子蛋白质 MAPKKsK/RAF （丝/苏氨酸蛋白激酶）
+
+ MAPKsKs/MEK（双重特异性蛋白激酶）
+
+ - 10 -
+ MAPK/ERK （丝/苏氨酸蛋白激酶）
+
+ 66

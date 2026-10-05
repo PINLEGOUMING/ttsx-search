@@ -1,0 +1,13 @@
+接起来 分离
+
+ 看起点
+ 互补 处理暴露出的5’、3’端 目的基因 -
+ 单
+ 逆转录酶 分子剪刀 在拟核里 找蛋白质：受体、抗体 Klenow片段 DNAXpolX1
+ 水解 - DNA聚合酶1、多聚核苷酸激酶 RNADNA
+ 蛋白质 DNA聚合酶I 逆转录 RNA0000000000000000cDNA00000000000000000dsDNA mRNAXXXXXXXXXcDNA -
+ DNA DNA聚合酶I 逆转录酶
+ cDNAdsXDNA 酶RNA
+ 第一链第二链
+
+ 101

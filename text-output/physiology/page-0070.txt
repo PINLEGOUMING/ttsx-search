@@ -1,0 +1,58 @@
+蛋白激酶s/s蛋白磷酸酶s（分子开关）
+ 每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充↓ 阶段考试 天天师兄 （去磷酸化） 催化蛋白质-sPs
+ ↓
+ 二、蛋白激酶 活性改变
+
+1.蛋白激酶是指催化蛋白质中的氨基酸发生磷酸化的酶，发生磷酸化后的蛋白质活性可增
+
+加或下降。蛋白激酶催化靶蛋白磷酸化，蛋白磷酸酶催化磷酸化的蛋白质去磷酸化，因此
+ 糖原合酶磷酸化后活性下降，蛋白激酶和蛋白磷酸酶系统共同构成了细胞信号转导的ttsx 分子开关
+ 磷酸化酶磷酸化后活性增加
+
+2.丝/苏氨酸（Ser/Thr）蛋白激酶（催化丝氨酸或苏氨酸发生磷酸化）ABCG 该死咳咳咳：
+
+ 丝/苏氨酸激酶 被谁激活
+ PKA GPCR cAMP AC-cAMP-sPKA
+ PKB/AKT 酪氨酸激酶受体 PIP3 PI3K-PIP3-PKB
+ Ca2+/DG-sPKC
+ PKC GPCR Ca2+、DG、磷脂酰丝氨酸 无IP3 Grb2
+ PKG GC受体 cGMP GC-scGMP-PKG
+ SOS
+ CaMK GPCR Ca2+-CaM
+ RAS 丝苏氨酸激酶受体 TGF-β
+ MAPKKK/RAF RAS RAF 酪氨酸激酶
+ 受体 MAPK/ERK MEK MEK
+ CDK 细胞周期蛋白（cyclin）ttsx ERK
+ 磷酸化酶激酶 PKA “吉尔救RAS咳咳咳”
+ 磷酸化酶活性增强
+   PKA
+ 水解cGMP，cAMP AC PDE
+ ATP cAMP 5‘-AMP
+
+ GTP cGMP 5‘-GMP 光→视蛋白（GPCR）→G蛋白→PDEs→cGMPs↓
+ GC PDE
+
+ PKG
+
+3.酪氨酸（Tyr）蛋白激酶TPK/PTK（催化酪氨酸发生磷酸化）老医生爱玩剑圣TP：
+
+①酪氨酸激酶受体TKR/RTK：即胰岛素的受体、多数生长因子的受体 TGF-β是丝/苏氨酸激酶受体
+ 酪氨酸激酶： “老医生爱玩剑圣TP”
+ 丝／苏氨酸激酶： “ABCG该死咳咳咳”
+串：原癌基因的产物之一跨膜生长因子受体有FMS、KIT、TRK、EGFR/HER1/ERBB1、
+
+ 胰岛素，多数生长因子
+HER2/ERBB2，它们都是酪氨酸激酶福尔摩斯杀了她的三个前女友
+ ⑨ TPK
+
+ ABL
+存在于细胞核中，其中 ABL：编码出酪氨酸激酶 WEE 核
+②ABL、WEE、JAK、SRC、TEC、ZAP JAKsSRCsTECsZAP&
+
+串：慢粒Ph 染色体t(9;22)形成BCR/ABL 融合基因，编码的蛋白质有酪氨酸激酶活性，因 “瘦白红乳长干产”
+
+此使用酪氨酸激酶抑制剂伊马替尼（格列卫）治疗
+
+ - 16 -
+
+ ⾼分经验 | 学习⽅法 | 笔记勘误 | 公众号：月落星沉西综笔记 72

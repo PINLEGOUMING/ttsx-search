@@ -1,0 +1,30 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ 专题串联·核苷酸抗代谢物
+ 跨章节和学科、用核心串核心，以便将重要考点串联成网
+
+ 类似 竞争 抑制 从头合成 补救合成
+ 6-巯基嘌呤/6-MP I PRPP 酰胺转移酶、HGPRT、APRT 等 合成嘌呤核苷酸
+ 别嘌呤醇 I 黄嘌呤氧化酶 “尿是酸的、黄的” 分解嘌呤核苷酸 “分别”
+ （治疗痛风） 合成嘌呤核苷酸的酶 合成嘌呤核苷酸
+ 阿糖胞苷 胞苷 CDP 还原酶 （脱氧） 合成dCDP （CDPX→dCDP）
+ 5-氟尿嘧啶/5-FU T “福特” 胸苷酸合酶 合成dTMP（dUMP→dTMP）
+ 甲氨蝶呤MTX 叶酸 FH2 还原酶 dUMP的甲基化→合成dTMP（dUMP→dTMP）
+ 叶酸XXXXXXXFH2XXXXXXXXFH4(一碳单位的载体) 合成嘌呤核苷酸 “枯叶蝶”XXXX FH2还原酶 FH2还原酶
+抑制四个酶 氮杂丝氨酸 Gln （谷氨酰胺） PRPP 酰胺转移酶、CPS-Ⅱ等 合成嘌呤和嘧啶核苷酸
+ “五谷杂粮” ① ② 只要与Gln有关都会被氮杂丝氨酸抑制
+ ③ CTP合成酶、XXGMP合成酶④
+ Gln+CO2+ATP
+ CPS-II X00氮杂丝氨酸抑制CPS-II、CTP合成酶、PRPP酰胺转移酶、GMP合成酶
+ CPS
+
+ PRPP酰胺转移酶
+ ······ PRPP PRA
+ X XX阿糖胞苷 嘌呤合成中Gln参与 GMP合成酶
+ CTP合成酶 CDP还原酶 XMP GMP UMPX→XUDPX→XUTPXXXXXXXXXXXXCTPX→XCDPXXXXXXXXXXXXXdCDP
+ ↓ XX5-FU CTP合成酶 胸苷合酶 UTP CTP
+ dUDPX→XdUMPXXXXXXXXXXXXXXdTMP 嘧啶合成中Gln参与 CPS-II 5 10 ↑ Gln+CO2 CPS NXNX-CH2-FH4 XX甲氨蝶呤
+
+ - 6 -
+
+ 高分经验 | 学习方法 | 笔记勘误 | 公众号：月落星沉西综笔记 77

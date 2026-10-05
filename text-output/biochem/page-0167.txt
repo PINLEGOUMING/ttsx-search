@@ -1,0 +1,51 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+ CAP
+2016N39 A 在乳糖操纵子中分解物基因激活蛋白结合的结构是
+A.启动序列
+B.操纵序列
+C.编码序列
+D.CAP 结合序列
+
+2016N157 X 以下核酸中，具有降解mRNA 功能的有 piRNA、siRNA/小干扰RNA、miRNA/microRNA
+A.hnRNA
+B.siRNA
+C.miRNA
+D.snoRNA 核仁小:参与45SXrRNA的加工修饰X→X5.8S、28S、18S
+
+2017N24 A 真核生物与原核生物转录的相同点
+A.都以操纵子模式进行调控 原核
+B.RNA 聚合酶相同 不同
+C.转录都具有不对称性
+D.产物都需要在胞核加工 ①原核是拟核②原核生成的mRNA是成熟的，不需要加工
+
+2017N146 X 与TATA 盒结合的蛋白质有
+ IIE,,IIH IIF(把RNApolII带过来)A.RNA 聚合酶Ⅱ 通用转录因子/基本转录因子：TFIID（TBP）
+ （加强）IIA TFIID(TBP)B.TFⅡ D RNA + （募集、稳定）IIB polIIC.拓扑异构酶 参与复制全过程 TATA
+D.组蛋白 (II类启动子核心序列)
+
+2018N24 A RNA 生物合成时，转录因子TFⅡ D 结合的部位是
+A.TATA 盒 TFXIID的TBP亚基 II类启动子上游元件XXXGCXXXXXXXCAAT
+B.GC 盒 ↑ ↑
+ 上游因子XXXSP1XXXXXXC/EBP
+C.ATG DNA AUG（mRNA）
+D.poly A 真核生物mRNA的尾巴(转录终止核加尾同时进行、加尾信号:AAUAAA/AATAAA)
+
+2018N26 A 在生物个体中几乎所有细胞都表达的基因是 ATG
+ 5’ 3’ 编码链
+A.管家基因 基本/组成性表达 DNA
+B.阻遏基因 3’ 5’ 模板链
+ ↓C.突变基因 AUG
+ mRNA 5’ 3’D.可诱导基因
+    
+
+2018N145 X 参与基因转录调控的主要结构有
+A.启动子 参与真核基因转录调控→ACX参与原核基因转录调控→AB
+B.衰减子
+C.增强子
+D.密码子 ←XDNA编码序列(结构基因)
+
+【答案】：XDX、XBCX、XCX、XABX、XAX、XAX、XABC
+
+ - 12 -
+
+ 高分经验 | 学习方法 | 笔记勘误 | 公众号：月落星沉西综笔记 169

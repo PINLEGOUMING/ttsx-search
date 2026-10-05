@@ -1,0 +1,42 @@
+每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+
+ 四、转录后水平的基因表达调控（主要影响真核）
+1.影响前体mRNA 的加工修饰
+
+2.影响mRNA 从细胞核转运到细胞质
+ interfere 微 small,interfere
+3.转录后基因沉默/RNA 干扰/RNAi：piRNA、miRNA/microRNA、siRNA/小干扰RNA
+ miRNA siRNA
+ 内源（RNApol Ⅱ催化转录） 内源、外源
+ 单 链 “me我单身” 双 链
+ 组成RISC RNA induce silence complex 组成RISC
+ ↓ (RNA诱导的沉默复合体) ↓
+结合靶mRNA→降解mRNA（完全互补） 结合靶mRNA→降解mRNA（完全互补）
+结合靶mRNA 3 端非翻译区→抑制翻译 (不完全互补)
+ 调节发育过程 抑制转座子活性、病毒感染
+ “我内向，发育不完全，所以单身”
+ 病毒核酸
+
+ ✂ ✂
+ Dicer酶 DNA
+
+ siRNA
+ siRNA siRNA
+
+ 蛋白质 miRNA
+ siRNA 完全互补 不完全互补
+ miRNA →清除 →抑制翻译
+
+ 思维导图·基因表达调控概述
+ 思维导图帮助同学们快速把握本节框架和重点、通过考点分布明确高频低频核心
+ 转录起始水平调控
+ 原核 真核
+ RNApolI-I类启动子-TFI 完全互补 RNApol的σ亚基 靶RNA
+ 启动子 RNApolII-II类启动子-TFII 识别-35区TTGACA
+ RNApolIII-III类启动子-TFIII0 -10区TATAAT(Pribnow box)
+ (TFIID的TBP亚基结合TATA/Hogness盒)
+ - 10 -
+ 操纵子 顺式作用元件、反式作用因子/转录因子
+
+ 主要是负性调节(阻遏调节) 主要是正性调节(诱导调节)
+ 167
