@@ -14,9 +14,6 @@
     overflow: hidden;
   }
 
-  /* ============================================================
-     部分 1：搜索栏
-     ============================================================ */
   header {
     display: flex; gap: 8px; align-items: center;
     padding: 10px 12px; background: #fff;
@@ -41,9 +38,6 @@
     flex-basis: 100%; text-align: right;
   }
 
-  /* ============================================================
-     部分 2-7：分类标签（全部 + 5 个科目）
-     ============================================================ */
   nav.tabs {
     display: flex; gap: 2px; padding: 6px 10px 0;
     background: #fff; border-bottom: 1px solid #e3e6eb;
@@ -62,12 +56,8 @@
     color: #2f6fed; border-bottom-color: #2f6fed; font-weight: 600;
   }
 
-  /* ============================================================
-     主体
-     ============================================================ */
   main { flex: 1; display: flex; min-height: 0; position: relative; }
 
-  /* 结果面板 */
   #resultsPanel {
     width: 380px; flex: none; background: #fff;
     border-right: 1px solid #e3e6eb;
@@ -98,7 +88,6 @@
   }
   mark { background: #ffe58f; color: inherit; border-radius: 2px; padding: 0 1px; }
 
-  /* 查看器 */
   #viewerPane { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 
   #viewerBar {
@@ -106,9 +95,7 @@
     flex: none; padding: 8px 10px;
     display: flex; flex-direction: column; gap: 8px;
   }
-  #viewerBar .row {
-    display: flex; align-items: center; gap: 6px;
-  }
+  #viewerBar .row { display: flex; align-items: center; gap: 6px; }
   #viewerBar .title {
     flex: 1; overflow: hidden;
     text-overflow: ellipsis; white-space: nowrap;
@@ -117,7 +104,7 @@
   #viewerBar button {
     padding: 6px 12px; border: 1px solid #d0d5dd; background: #fff;
     border-radius: 6px; cursor: pointer; font-size: 12px;
-    white-space: nowrap; transition: .15s;
+    white-space: nowrap; transition: .15s; color: #1f2329;
   }
   #viewerBar button:active:not(:disabled) { background: #f2f4f8; }
   #viewerBar button:disabled { opacity: .4; cursor: not-allowed; }
@@ -135,31 +122,44 @@
   }
   #pageInput:focus { border-color: #2f6fed; box-shadow: 0 0 0 3px rgba(47,111,237,.15); }
   #pageTotal { font-size: 12px; color: #6b7280; white-space: nowrap; }
-  #goBtn {
-    padding: 6px 12px; background: #2f6fed; color: #fff;
-    border: none; border-radius: 6px; font-size: 12px; cursor: pointer;
+
+  /* ★ 提高优先级到 #viewerBar #goBtn，覆盖 #viewerBar button */
+  #viewerBar #goBtn {
+    padding: 6px 14px;
+    background: #fff;
+    color: #1f2329;               /* ← 黑字 */
+    border: 1px solid #d0d5dd;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .15s;
   }
-  #goBtn:active { background: #2560d8; }
+  #viewerBar #goBtn:active:not(:disabled) { background: #f2f4f8; }
+  #viewerBar #goBtn:disabled { opacity: .4; cursor: not-allowed; }
 
   #viewerScroll {
     flex: 1; overflow: auto; padding: 16px; text-align: center;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x pan-y pinch-zoom;
+    position: relative;
   }
   #pageImg {
     max-width: 100%; height: auto; display: inline-block;
     background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.13);
     vertical-align: top;
   }
+  #loadingTip {
+    display: none; padding: 60px 20px; color: #6b7280; font-size: 13px;
+  }
+  #loadingTip.show { display: block; }
 
   .empty {
     padding: 44px 20px; text-align: center;
     color: #9aa1ab; font-size: 13px;
   }
 
-  /* ============================================================
-     手机端：单栏切换
-     ============================================================ */
   @media (max-width: 768px) {
     header { padding: 8px 10px; }
     header h1 { font-size: 13px; }
@@ -203,7 +203,6 @@
 </head>
 <body>
 
-<!-- ============ 部分 1：标题 + 搜索按钮 ============ -->
 <header>
   <h1>TTSX讲义-月落星沉</h1>
   <input id="searchInput" type="search" enterkeyhint="search"
@@ -212,7 +211,6 @@
   <span id="status">正在加载索引…</span>
 </header>
 
-<!-- ============ 部分 2-6：全部 + 5 个科目（已移除思维导图） ============ -->
 <nav class="tabs" id="tabs">
   <button data-cat="all"        class="active">全部</button>
   <button data-cat="physiology">生理学</button>
@@ -247,6 +245,7 @@
 
     <div id="viewerScroll">
       <div class="empty" id="viewerHint">点击左侧搜索结果查看页面</div>
+      <div id="loadingTip">图片加载中…</div>
       <img id="pageImg" hidden alt="" />
     </div>
   </section>
@@ -254,7 +253,7 @@
 
 <script>
 /* ============================================================
-   文件清单（已移除思维导图）
+   文件清单（目录结构与此 HTML 同级）
    ============================================================ */
 const FILES = [
   { id: 'physiology', name: '生理学',   index: 'search-index/physiology.json', imgBase: 'images/physiology' },
@@ -278,7 +277,48 @@ const state = {
 const $ = (id) => document.getElementById(id);
 
 /* ============================================================
-   1. 加载索引
+   Blob 图片缓存（LRU）——同 URL 只下网一次
+   ============================================================ */
+const BLOB_CACHE = new Map();   // originalUrl -> blobUrl
+const BLOB_MAX   = 30;          // 保留最近 30 页
+
+function imageUrl(imgBase, n) {
+  return `${imgBase}/page-${String(n).padStart(4, '0')}.webp`;
+}
+
+async function getBlobUrl(originalUrl) {
+  if (BLOB_CACHE.has(originalUrl)) {
+    const v = BLOB_CACHE.get(originalUrl);
+    BLOB_CACHE.delete(originalUrl);
+    BLOB_CACHE.set(originalUrl, v);   // 刷新 LRU
+    return v;
+  }
+  try {
+    const res = await fetch(originalUrl);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    BLOB_CACHE.set(originalUrl, blobUrl);
+    while (BLOB_CACHE.size > BLOB_MAX) {
+      const [k, u] = BLOB_CACHE.entries().next().value;
+      BLOB_CACHE.delete(k);
+      URL.revokeObjectURL(u);
+    }
+    return blobUrl;
+  } catch (e) {
+    console.error('图片加载失败', originalUrl, e);
+    throw e;
+  }
+}
+
+function preload(imgBase, n, total) {
+  if (n < 1 || n > total) return;
+  getBlobUrl(imageUrl(imgBase, n)).catch(() => {});
+}
+
+/* ============================================================
+   加载索引
    ============================================================ */
 async function loadAll() {
   let done = 0;
@@ -299,14 +339,13 @@ async function loadAll() {
 }
 
 /* ============================================================
-   2. 搜索工具
+   搜索工具
    ============================================================ */
 function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
-
 function makeSnippet(text, idx, len, radius = 70) {
   const start = Math.max(0, idx - radius);
   const end   = Math.min(text.length, idx + len + radius);
@@ -315,13 +354,11 @@ function makeSnippet(text, idx, len, radius = 70) {
   if (end < text.length) s = s + '…';
   return s;
 }
-
 function buildRegex(query) {
   const terms = query.trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
   if (!terms.length) return null;
   return new RegExp(terms.join('|'), 'gi');
 }
-
 function highlight(text, regex) {
   if (!regex) return escapeHtml(text);
   regex.lastIndex = 0;
@@ -337,17 +374,13 @@ function highlight(text, regex) {
 }
 
 /* ============================================================
-   3. 执行搜索
+   执行搜索
    ============================================================ */
 function doSearch() {
   const q = $('searchInput').value.trim();
   state.query = q;
 
-  if (!q) {
-    state.results = [];
-    render();
-    return;
-  }
+  if (!q) { state.results = []; render(); return; }
 
   const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
   const targetIds = state.category === 'all'
@@ -355,21 +388,17 @@ function doSearch() {
     : [state.category];
 
   const out = [];
-
   outer:
   for (const fid of targetIds) {
     const idx = state.indexes[fid];
     if (!idx) continue;
-
     for (const [pageNum, text] of idx.pages) {
       const lower = text.toLowerCase();
-
       let ok = true;
       for (const t of terms) {
         if (lower.indexOf(t) === -1) { ok = false; break; }
       }
       if (!ok) continue;
-
       const firstIdx = lower.indexOf(terms[0]);
       out.push({
         fileId: fid,
@@ -377,17 +406,15 @@ function doSearch() {
         pageNum,
         snippet: makeSnippet(text, firstIdx, terms[0].length),
       });
-
       if (out.length >= MAX_TOTAL) break outer;
     }
   }
-
   state.results = out;
   render();
 }
 
 /* ============================================================
-   4. 渲染结果
+   渲染结果
    ============================================================ */
 function render() {
   const box  = $('results');
@@ -429,38 +456,30 @@ function render() {
 }
 
 /* ============================================================
-   5. 点击结果 → 打开图片
+   打开页面
    ============================================================ */
 function openResult(i) {
   const r = state.results[i];
   if (!r) return;
-  state.current = { fileId: r.fileId, pageNum: r.pageNum };
-
   document.querySelectorAll('.result-item').forEach((el) => {
     el.classList.toggle('active', Number(el.dataset.index) === i);
   });
-
   showPage(r.fileId, r.pageNum);
 }
 
-function showPage(fileId, pageNum) {
+let loadSeq = 0;
+
+async function showPage(fileId, pageNum) {
   const f   = FILES.find(x => x.id === fileId);
   const idx = state.indexes[fileId];
   if (!f || !idx) return;
 
   const numPages = idx.numPages || idx.pages.length;
   pageNum = Math.max(1, Math.min(numPages, pageNum));
-
   state.current = { fileId, pageNum };
-
-  const img = $('pageImg');
-  img.hidden = false;
-  img.alt    = `${f.name} 第 ${pageNum} 页`;
-  img.src    = `${f.imgBase}/page-${String(pageNum).padStart(4, '0')}.webp`;
 
   $('viewerHint').style.display = 'none';
   $('viewerTitle').textContent = `${f.name} · 第 ${pageNum} 页`;
-
   $('prevBtn').disabled = pageNum <= 1;
   $('nextBtn').disabled = pageNum >= numPages;
   $('pageInput').disabled = false;
@@ -468,25 +487,40 @@ function showPage(fileId, pageNum) {
   $('pageInput').value = pageNum;
   $('pageInput').max = numPages;
   $('pageTotal').textContent = `/ ${numPages}`;
-
   $('viewerScroll').scrollTop = 0;
 
-  if (IS_MOBILE()) {
-    document.body.classList.add('viewer-open');
+  if (IS_MOBILE()) document.body.classList.add('viewer-open');
+
+  const url = imageUrl(f.imgBase, pageNum);
+  const cached = BLOB_CACHE.has(url);
+  const img = $('pageImg');
+  if (!cached) {
+    $('loadingTip').classList.add('show');
+    img.hidden = true;
+  }
+
+  const seq = ++loadSeq;
+  try {
+    const src = await getBlobUrl(url);
+    if (seq !== loadSeq) return;
+    $('loadingTip').classList.remove('show');
+    img.hidden = false;
+    img.alt = `${f.name} 第 ${pageNum} 页`;
+    img.src = src;
+  } catch (e) {
+    if (seq !== loadSeq) return;
+    $('loadingTip').classList.remove('show');
+    img.hidden = true;
+    $('viewerHint').style.display = '';
+    $('viewerHint').textContent = '图片加载失败，请检查 images 目录';
   }
 
   preload(f.imgBase, pageNum - 1, numPages);
   preload(f.imgBase, pageNum + 1, numPages);
 }
 
-function preload(imgBase, n, total) {
-  if (n < 1 || n > total) return;
-  const i = new Image();
-  i.src = `${imgBase}/page-${String(n).padStart(4, '0')}.webp`;
-}
-
 /* ============================================================
-   6. 翻页 / 跳转
+   翻页 / 跳转
    ============================================================ */
 function goPrev() {
   const { fileId, pageNum } = state.current;
@@ -511,21 +545,15 @@ function goToPage() {
 }
 
 /* ============================================================
-   7. 事件绑定
+   事件绑定
    ============================================================ */
 $('searchBtn').addEventListener('click', () => {
   doSearch();
   $('searchInput').blur();
 });
-
 $('searchInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    doSearch();
-    $('searchInput').blur();
-  }
+  if (e.key === 'Enter') { e.preventDefault(); doSearch(); $('searchInput').blur(); }
 });
-
 let searchTimer = null;
 $('searchInput').addEventListener('input', () => {
   clearTimeout(searchTimer);
@@ -545,17 +573,11 @@ $('tabs').addEventListener('click', (e) => {
 $('backBtn').addEventListener('click', () => {
   document.body.classList.remove('viewer-open');
 });
-
 $('prevBtn').addEventListener('click', goPrev);
 $('nextBtn').addEventListener('click', goNext);
 $('goBtn').addEventListener('click', goToPage);
-
 $('pageInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    goToPage();
-    $('pageInput').blur();
-  }
+  if (e.key === 'Enter') { e.preventDefault(); goToPage(); $('pageInput').blur(); }
 });
 
 document.addEventListener('keydown', (e) => {
@@ -566,43 +588,36 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ============================================================
-   8. 手机端滑动翻页
+   手机端滑动翻页
    ============================================================ */
 (function bindSwipe() {
   const el = $('viewerScroll');
   let x0 = 0, y0 = 0, t0 = 0;
-
   el.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
     x0 = e.touches[0].clientX;
     y0 = e.touches[0].clientY;
     t0 = Date.now();
   }, { passive: true });
-
   el.addEventListener('touchend', (e) => {
     if (e.changedTouches.length !== 1) return;
     const dx = e.changedTouches[0].clientX - x0;
     const dy = e.changedTouches[0].clientY - y0;
     const dt = Date.now() - t0;
-
     if (Math.abs(dx) < 60) return;
     if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
     if (dt > 600) return;
-
     if (dx < 0) goNext();
     if (dx > 0) goPrev();
   }, { passive: true });
 })();
 
-/* ============================================================
-   9. 尺寸变化
-   ============================================================ */
 window.addEventListener('resize', () => {
   if (!IS_MOBILE()) document.body.classList.remove('viewer-open');
 });
 
 /* ============================================================
-   10. 启动
+   启动
    ============================================================ */
 loadAll();
 </script>
