@@ -123,10 +123,11 @@
   #pageInput:focus { border-color: #2f6fed; box-shadow: 0 0 0 3px rgba(47,111,237,.15); }
   #pageTotal { font-size: 12px; color: #6b7280; white-space: nowrap; }
 
+  /* ★ 提高优先级到 #viewerBar #goBtn，覆盖 #viewerBar button */
   #viewerBar #goBtn {
     padding: 6px 14px;
     background: #fff;
-    color: #1f2329;
+    color: #1f2329;               /* ← 黑字 */
     border: 1px solid #d0d5dd;
     border-radius: 6px;
     font-size: 12px;
@@ -210,7 +211,6 @@
   <span id="status">正在加载索引…</span>
 </header>
 
-<!-- ★ 新增：思维导图 tab -->
 <nav class="tabs" id="tabs">
   <button data-cat="all"        class="active">全部</button>
   <button data-cat="physiology">生理学</button>
@@ -218,7 +218,6 @@
   <button data-cat="internal">内科学</button>
   <button data-cat="surgery">外科学</button>
   <button data-cat="biochem">生物化学</button>
-  <button data-cat="mindmap">思维导图</button>
 </nav>
 
 <main>
@@ -255,7 +254,6 @@
 <script>
 /* ============================================================
    文件清单（目录结构与此 HTML 同级）
-   unit 字段控制结果里显示的「第 N X」中的 X，默认「页」
    ============================================================ */
 const FILES = [
   { id: 'physiology', name: '生理学',   index: 'search-index/physiology.json', imgBase: 'images/physiology' },
@@ -263,8 +261,6 @@ const FILES = [
   { id: 'internal',   name: '内科学',   index: 'search-index/internal.json',   imgBase: 'images/internal'   },
   { id: 'surgery',    name: '外科学',   index: 'search-index/surgery.json',    imgBase: 'images/surgery'    },
   { id: 'biochem',    name: '生物化学', index: 'search-index/biochem.json',    imgBase: 'images/biochem'    },
-  // ★ 新增：思维导图
-  { id: 'mindmap',    name: '思维导图', index: 'search-index/mindmap.json',    imgBase: 'images/mindmap', unit: '张' },
 ];
 
 const MAX_TOTAL = 200;
@@ -280,17 +276,11 @@ const state = {
 
 const $ = (id) => document.getElementById(id);
 
-/* 根据 fileId 查 unit（默认「页」） */
-function unitOf(fileId) {
-  const f = FILES.find(x => x.id === fileId);
-  return (f && f.unit) || '页';
-}
-
 /* ============================================================
-   Blob 图片缓存（LRU）
+   Blob 图片缓存（LRU）——同 URL 只下网一次
    ============================================================ */
-const BLOB_CACHE = new Map();
-const BLOB_MAX   = 30;
+const BLOB_CACHE = new Map();   // originalUrl -> blobUrl
+const BLOB_MAX   = 30;          // 保留最近 30 页
 
 function imageUrl(imgBase, n) {
   return `${imgBase}/page-${String(n).padStart(4, '0')}.webp`;
@@ -300,7 +290,7 @@ async function getBlobUrl(originalUrl) {
   if (BLOB_CACHE.has(originalUrl)) {
     const v = BLOB_CACHE.get(originalUrl);
     BLOB_CACHE.delete(originalUrl);
-    BLOB_CACHE.set(originalUrl, v);
+    BLOB_CACHE.set(originalUrl, v);   // 刷新 LRU
     return v;
   }
   try {
@@ -452,11 +442,10 @@ function render() {
     const el = document.createElement('div');
     el.className = 'result-item';
     el.dataset.index = i;
-    const unit = unitOf(r.fileId);   // ★ 按文件类型显示「页」或「张」
     el.innerHTML =
       '<div class="result-head">' +
         '<span class="result-file">' + escapeHtml(r.fileName) + '</span>' +
-        '<span class="result-page">第 ' + r.pageNum + ' ' + unit + '</span>' +
+        '<span class="result-page">第 ' + r.pageNum + ' 页</span>' +
       '</div>' +
       '<div class="result-snippet">' + highlight(r.snippet, regex) + '</div>';
     el.addEventListener('click', () => openResult(i));
@@ -489,9 +478,8 @@ async function showPage(fileId, pageNum) {
   pageNum = Math.max(1, Math.min(numPages, pageNum));
   state.current = { fileId, pageNum };
 
-  const unit = f.unit || '页';
   $('viewerHint').style.display = 'none';
-  $('viewerTitle').textContent = `${f.name} · 第 ${pageNum} ${unit}`;   // ★ 显示单位
+  $('viewerTitle').textContent = `${f.name} · 第 ${pageNum} 页`;
   $('prevBtn').disabled = pageNum <= 1;
   $('nextBtn').disabled = pageNum >= numPages;
   $('pageInput').disabled = false;
@@ -517,7 +505,7 @@ async function showPage(fileId, pageNum) {
     if (seq !== loadSeq) return;
     $('loadingTip').classList.remove('show');
     img.hidden = false;
-    img.alt = `${f.name} 第 ${pageNum} ${unit}`;
+    img.alt = `${f.name} 第 ${pageNum} 页`;
     img.src = src;
   } catch (e) {
     if (seq !== loadSeq) return;
