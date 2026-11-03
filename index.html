@@ -86,6 +86,13 @@
     font-size: 13px; line-height: 1.65;
     color: #3c4149; word-break: break-word;
   }
+  .result-snippet + .result-snippet {
+    margin-top: 5px; padding-top: 5px;
+    border-top: 1px dashed #eceff3;
+  }
+  .result-more {
+    margin-top: 6px; font-size: 12px; color: #9aa1ab;
+  }
   mark { background: #ffe58f; color: inherit; border-radius: 2px; padding: 0 1px; }
 
   #viewerPane { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -267,7 +274,12 @@ const FILES = [
   { id: 'mindmap',    name: '思维导图', index: 'search-index/mindmap.json',    imgBase: 'images/mindmap', unit: '张' },
 ];
 
-const MAX_TOTAL = 200;
+const MAX_TOTAL = 200;      // 最多返回多少页结果
+const SNIPPET_MAX = 100;    // ★ 单页最多展示多少条摘要（安全阀，几乎不会触发）
+const SNIPPET_RADIUS = 35;  // ★ 每条摘要中，匹配词左右保留的上下文字符数
+const MERGE_GAP = 30;       // ★ 两个匹配间距 ≤ 此值 → 合并为同一条摘要
+const INNER_GAP = 30;       // ★ 合并后，两个匹配之间最多保留的原文长度，超过用 … 省略
+
 const IS_MOBILE = () => window.matchMedia('(max-width: 768px)').matches;
 
 const state = {
@@ -356,14 +368,6 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
-function makeSnippet(text, idx, len, radius = 70) {
-  const start = Math.max(0, idx - radius);
-  const end   = Math.min(text.length, idx + len + radius);
-  let s = text.slice(start, end).replace(/\s+/g, ' ').trim();
-  if (start > 0) s = '…' + s;
-  if (end < text.length) s = s + '…';
-  return s;
-}
 function buildRegex(query) {
   const terms = query.trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
   if (!terms.length) return null;
@@ -381,6 +385,118 @@ function highlight(text, regex) {
   }
   html += escapeHtml(text.slice(last));
   return html;
+}
+
+/* ------------------------------------------------------------
+   ★ 核心：把一页文本中所有匹配整理成若干条摘要
+   - 所有匹配都展示，不丢弃
+   - 相近的匹配合并为同一条摘要
+   - 合并后中间过长用 … 省略
+   - 每条摘要长度适中
+   ------------------------------------------------------------ */
+function collectSnippets(text, terms) {
+  const lower = text.toLowerCase();
+  const spans = [];
+  for (const t of terms) {
+    let from = 0;
+    while (true) {
+      const i = lower.indexOf(t, from);
+      if (i === -1) break;
+      spans.push([i, i + t.length]);
+      from = i + t.length;
+    }
+  }
+  const total = spans.length;
+  if (!total) return { snippets: [], total: 0, shown: 0 };
+
+  spans.sort((a, b) => a[0] - b[0]);
+
+  /* 1. 合并位置重叠的匹配 */
+  const merged = [];
+  for (const s of spans) {
+    const last = merged[merged.length - 1];
+    if (last && s[0] <= last.end) {
+      last.end = Math.max(last.end, s[1]);
+    } else {
+      merged.push({ start: s[0], end: s[1] });
+    }
+  }
+
+  /* 2. 按间距分组：相距近的合为同一条摘要 */
+  const groups = [];
+  let cur = [merged[0]];
+  for (let k = 1; k < merged.length; k++) {
+    const prev = merged[k - 1], next = merged[k];
+    if (next.start - prev.end <= MERGE_GAP) {
+      cur.push(next);
+    } else {
+      groups.push(cur);
+      cur = [next];
+    }
+  }
+  groups.push(cur);
+
+  /* 3. 生成摘要文本 */
+  const snippets = [];
+  const keptGroups = [];
+  for (const g of groups) {
+    if (snippets.length >= SNIPPET_MAX) break;
+    snippets.push(buildSnippetText(text, g));
+    keptGroups.push(g);
+  }
+
+  /* 4. 统计已展示的匹配数 */
+  let shown;
+  if (keptGroups.length === groups.length) {
+    shown = total;
+  } else {
+    shown = 0;
+    for (const g of keptGroups) {
+      const gStart = g[0].start;
+      const gEnd = g[g.length - 1].end;
+      for (const s of spans) {
+        if (s[0] >= gStart && s[1] <= gEnd) shown++;
+      }
+    }
+  }
+
+  return { snippets, total, shown };
+}
+
+/* 把一组匹配（同一摘要）拼成一段文本，含 … 省略标记 */
+function buildSnippetText(text, group) {
+  const R = SNIPPET_RADIUS;
+  const parts = [];
+
+  /* 首匹配左侧上下文 */
+  const firstStart = Math.max(0, group[0].start - R);
+  if (firstStart > 0) parts.push('…');
+  parts.push(text.slice(firstStart, group[0].end));
+
+  /* 后续匹配：处理两匹配之间的内容 */
+  for (let k = 1; k < group.length; k++) {
+    const prevEnd = group[k - 1].end;
+    const currStart = group[k].start;
+    const gapLen = currStart - prevEnd;
+
+    if (gapLen > INNER_GAP) {
+      const half = Math.floor(INNER_GAP / 2);
+      parts.push(text.slice(prevEnd, Math.min(prevEnd + half, currStart)));
+      parts.push('…');
+      parts.push(text.slice(Math.max(currStart - half, prevEnd), currStart));
+    } else {
+      parts.push(text.slice(prevEnd, currStart));
+    }
+    parts.push(text.slice(currStart, group[k].end));
+  }
+
+  /* 末匹配右侧上下文 */
+  const lastEnd = group[group.length - 1].end;
+  const tailEnd = Math.min(text.length, lastEnd + R);
+  parts.push(text.slice(lastEnd, tailEnd));
+  if (tailEnd < text.length) parts.push('…');
+
+  return parts.join('').replace(/\s+/g, ' ').trim();
 }
 
 /* ============================================================
@@ -409,12 +525,17 @@ function doSearch() {
         if (lower.indexOf(t) === -1) { ok = false; break; }
       }
       if (!ok) continue;
-      const firstIdx = lower.indexOf(terms[0]);
+
+      const { snippets, total, shown } = collectSnippets(text, terms);
+      if (!snippets.length) continue;
+
       out.push({
         fileId: fid,
         fileName: idx.name,
         pageNum,
-        snippet: makeSnippet(text, firstIdx, terms[0].length),
+        snippets,
+        matchCount: total,
+        shownCount: shown,
       });
       if (out.length >= MAX_TOTAL) break outer;
     }
@@ -443,7 +564,8 @@ function render() {
   }
 
   const fileCount = new Set(state.results.map(r => r.fileId)).size;
-  meta.textContent = `找到 ${state.results.length} 条，分布 ${fileCount} 个文件`;
+  const totalMatches = state.results.reduce((s, r) => s + r.matchCount, 0);
+  meta.textContent = `命中 ${state.results.length} 页 · 共 ${totalMatches} 处匹配 · ${fileCount} 个文件`;
 
   const regex = buildRegex(state.query);
   const frag  = document.createDocumentFragment();
@@ -453,12 +575,22 @@ function render() {
     el.className = 'result-item';
     el.dataset.index = i;
     const unit = unitOf(r.fileId);   // ★ 按文件类型显示「页」或「张」
+
+    /* ★ 多条摘要逐行显示，全部标黄 */
+    let body = '';
+    r.snippets.forEach((sn) => {
+      body += '<div class="result-snippet">' + highlight(sn, regex) + '</div>';
+    });
+    const rest = r.matchCount - r.shownCount;
+    if (rest > 0) {
+      body += '<div class="result-more">…本页另有 ' + rest + ' 处匹配</div>';
+    }
+
     el.innerHTML =
       '<div class="result-head">' +
         '<span class="result-file">' + escapeHtml(r.fileName) + '</span>' +
         '<span class="result-page">第 ' + r.pageNum + ' ' + unit + '</span>' +
-      '</div>' +
-      '<div class="result-snippet">' + highlight(r.snippet, regex) + '</div>';
+      '</div>' + body;
     el.addEventListener('click', () => openResult(i));
     frag.appendChild(el);
   });
