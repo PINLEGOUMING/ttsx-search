@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+<meta name="theme-color" content="#ffffff" />
+<title>TTSX讲义-小凯的医学之路</title>
+<!-- ★ 本地 PDF.js -->
+<script src="lib/pdf.min.js"></script>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+    background: #f5f6f8; color: #1f2329; display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  header {
+    display: flex; gap: 8px; align-items: center;
+    padding: 10px 12px; background: #fff;
+    border-bottom: 1px solid #e3e6eb; flex: none;
+    flex-wrap: wrap;
+  }
+  header h1 { font-size: 14px; margin: 0; white-space: nowrap; font-weight: 700; }
+  #searchInput {
+    flex: 1; min-width: 120px; padding: 9px 12px;
+    border: 1px solid #d0d5dd; border-radius: 8px;
+    font-size: 15px; outline: none; transition: .15s;
+  }
+  #searchInput:focus { border-color: #2f6fed; box-shadow: 0 0 0 3px rgba(47,111,237,.15); }
+  #searchBtn {
+    padding: 9px 18px; background: #2f6fed; color: #fff;
+    border: none; border-radius: 8px; font-size: 14px;
+    cursor: pointer; transition: .15s; white-space: nowrap;
+  }
+  #searchBtn:active { background: #2560d8; }
+  #status {
+    font-size: 12px; color: #6b7280; white-space: nowrap;
+    flex-basis: 100%; text-align: right;
+  }
+
+  nav.tabs {
+    display: flex; gap: 2px; padding: 6px 10px 0;
+    background: #fff; border-bottom: 1px solid #e3e6eb;
+    overflow-x: auto; flex: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs button {
+    padding: 8px 12px; border: none; background: transparent;
+    font-size: 13px; color: #4a5160; cursor: pointer;
+    border-bottom: 2px solid transparent; white-space: nowrap;
+    transition: .15s; flex: none;
+  }
+  nav.tabs button.active {
+    color: #2f6fed; border-bottom-color: #2f6fed; font-weight: 600;
+  }
+
+  main { flex: 1; display: flex; min-height: 0; position: relative; }
+
+  #resultsPanel {
+    width: 380px; flex: none; background: #fff;
+    border-right: 1px solid #e3e6eb;
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  #resultsMeta {
+    padding: 10px 14px; font-size: 12px; color: #6b7280;
+    border-bottom: 1px solid #eef0f3; flex: none;
+  }
+  #results { overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
+  .result-item {
+    padding: 12px 14px; border-bottom: 1px solid #f0f2f5; cursor: pointer;
+  }
+  .result-item:active { background: #f6f8fc; }
+  .result-item.active { background: #eaf1ff; box-shadow: inset 3px 0 0 #2f6fed; }
+  .result-head {
+    display: flex; justify-content: space-between; gap: 8px;
+    font-size: 12px; color: #6b7280; margin-bottom: 6px;
+  }
+  .result-file {
+    color: #2f6fed; font-weight: 600;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .result-page { flex: none; background: #eef1f5; border-radius: 4px; padding: 1px 7px; }
+  .result-snippet {
+    font-size: 13px; line-height: 1.65;
+    color: #3c4149; word-break: break-word;
+  }
+  .result-snippet + .result-snippet {
+    margin-top: 5px; padding-top: 5px;
+    border-top: 1px dashed #eceff3;
+  }
+  .result-more { margin-top: 6px; font-size: 12px; color: #9aa1ab; }
+  mark { background: #ffe58f; color: inherit; border-radius: 2px; padding: 0 1px; }
+
+  #viewerPane { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+  #viewerBar {
+    background: #fff; border-bottom: 1px solid #e3e6eb;
+    flex: none; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  #viewerBar .row { display: flex; align-items: center; gap: 6px; }
+  #viewerBar .title {
+    flex: 1; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+    font-size: 13px; font-weight: 600;
+  }
+  #viewerBar button {
+    padding: 6px 12px; border: 1px solid #d0d5dd; background: #fff;
+    border-radius: 6px; cursor: pointer; font-size: 12px;
+    white-space: nowrap; transition: .15s; color: #1f2329;
+  }
+  #viewerBar button:active:not(:disabled) { background: #f2f4f8; }
+  #viewerBar button:disabled { opacity: .4; cursor: not-allowed; }
+  #backBtn {
+    padding: 7px 12px; border: 1px solid #d0d5dd; background: #fff;
+    border-radius: 6px; cursor: pointer; font-size: 13px;
+    white-space: nowrap; flex: none;
+  }
+  #backBtn:active { background: #f2f4f8; }
+
+  #pageInput {
+    width: 62px; padding: 6px 8px;
+    border: 1px solid #d0d5dd; border-radius: 6px;
+    font-size: 13px; text-align: center; outline: none;
+  }
+  #pageInput:focus { border-color: #2f6fed; box-shadow: 0 0 0 3px rgba(47,111,237,.15); }
+  #pageTotal { font-size: 12px; color: #6b7280; white-space: nowrap; }
+
+  #viewerBar #goBtn {
+    padding: 6px 14px;
+    background: #fff;
+    color: #1f2329;
+    border: 1px solid #d0d5dd;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .15s;
+  }
+  #viewerBar #goBtn:active:not(:disabled) { background: #f2f4f8; }
+  #viewerBar #goBtn:disabled { opacity: .4; cursor: not-allowed; }
+
+  #viewerScroll {
+    flex: 1; overflow: auto; padding: 16px; text-align: center;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y pinch-zoom;
+    position: relative;
+  }
+  #pdfCanvas {
+    max-width: 100%; height: auto; display: inline-block;
+    background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.13);
+    vertical-align: top;
+  }
+  #loadingTip {
+    display: none; padding: 60px 20px; color: #6b7280; font-size: 13px;
+  }
+  #loadingTip.show { display: block; }
+
+  .empty {
+    padding: 44px 20px; text-align: center;
+    color: #9aa1ab; font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 8px 10px; }
+    header h1 { font-size: 13px; }
+    #searchBtn { padding: 9px 14px; font-size: 13px; }
+    #status { display: none; }
+
+    main { position: relative; }
+    #resultsPanel { width: 100%; border-right: none; }
+    #viewerPane {
+      position: absolute; inset: 0; z-index: 10;
+      background: #f5f6f8;
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      pointer-events: none;
+    }
+    body.viewer-open #viewerPane {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    body.viewer-open #resultsPanel { visibility: hidden; }
+
+    #viewerScroll { padding: 8px; }
+    #pdfCanvas { max-width: 100%; box-shadow: none; }
+
+    #viewerBar { padding-top: max(8px, env(safe-area-inset-top)); }
+    #viewerScroll { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+
+    #backBtn { display: block; }
+  }
+
+  @media (min-width: 769px) {
+    #backBtn { display: none; }
+  }
+
+  @media (max-width: 380px) {
+    header h1 { font-size: 12px; }
+    #searchBtn { padding: 9px 10px; }
+    #pageInput { width: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TTSX讲义-小凯的医学之路</h1>
+  <input id="searchInput" type="search" enterkeyhint="search"
+         placeholder="输入关键词…" autocomplete="off" />
+  <button id="searchBtn">搜索</button>
+  <span id="status">正在加载索引…</span>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-cat="all"        class="active">全部</button>
+  <button data-cat="physiology">生理学</button>
+  <button data-cat="pathology">病理学</button>
+  <button data-cat="internal">内科学</button>
+  <button data-cat="surgery">外科学</button>
+  <button data-cat="biochem">生物化学</button>
+  <button data-cat="mindmap">思维导图</button>
+</nav>
+
+<main>
+  <aside id="resultsPanel">
+    <div id="resultsMeta">输入关键词开始搜索</div>
+    <div id="results">
+      <div class="empty">支持多词，如「心电图 心律失常」</div>
+    </div>
+  </aside>
+
+  <section id="viewerPane">
+    <div id="viewerBar">
+      <div class="row">
+        <button id="backBtn">← 返回</button>
+        <span class="title" id="viewerTitle">未选择页面</span>
+      </div>
+      <div class="row">
+        <button id="prevBtn" disabled>← 上一页</button>
+        <input id="pageInput" type="number" min="1" value="1" inputmode="numeric" disabled />
+        <span id="pageTotal">/ -</span>
+        <button id="goBtn" disabled>跳转</button>
+        <button id="nextBtn" disabled>下一页 →</button>
+      </div>
+    </div>
+
+    <div id="viewerScroll">
+      <div class="empty" id="viewerHint">点击左侧搜索结果查看页面</div>
+      <div id="loadingTip">PDF 加载中…</div>
+      <canvas id="pdfCanvas" hidden></canvas>
+    </div>
+  </section>
+</main>
+
+<script>
+/* ============================================================
+   文件清单
+   每一页为一个独立 PDF：  pdfBase/page-0001.pdf
+   ============================================================ */
+const FILES = [
+  { id: 'physiology', name: '生理学',   index: 'search-index/physiology.json', pdfBase: 'pdfs/physiology' },
+  { id: 'pathology',  name: '病理学',   index: 'search-index/pathology.json',  pdfBase: 'pdfs/pathology'  },
+  { id: 'internal',   name: '内科学',   index: 'search-index/internal.json',   pdfBase: 'pdfs/internal'   },
+  { id: 'surgery',    name: '外科学',   index: 'search-index/surgery.json',    pdfBase: 'pdfs/surgery'    },
+  { id: 'biochem',    name: '生物化学', index: 'search-index/biochem.json',    pdfBase: 'pdfs/biochem'    },
+  { id: 'mindmap',    name: '思维导图', index: 'search-index/mindmap.json',    pdfBase: 'pdfs/mindmap', unit: '张' },
+];
+
+const MAX_TOTAL = 200;
+const SNIPPET_MAX = 100;
+const SNIPPET_RADIUS = 35;
+const MERGE_GAP = 30;
+const INNER_GAP = 30;
+
+const IS_MOBILE = () => window.matchMedia('(max-width: 768px)').matches;
+
+const state = {
+  indexes: {},
+  category: 'all',
+  query: '',
+  results: [],
+  current: { fileId: null, pageNum: 0 },
+};
+
+const $ = (id) => document.getElementById(id);
+
+function unitOf(fileId) {
+  const f = FILES.find(x => x.id === fileId);
+  return (f && f.unit) || '页';
+}
+
+/* ============================================================
+   初始化 PDF.js（本地 worker）
+   ============================================================ */
+const PDFJS_OK = (typeof pdfjsLib !== 'undefined');
+if (PDFJS_OK) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'lib/pdf.worker.min.js';
+}
+
+/* ============================================================
+   PDF 文档缓存（LRU）
+   ============================================================ */
+const PDF_DOC_CACHE = new Map();
+const PDF_DOC_MAX   = 6;
+
+function pdfUrl(pdfBase, n) {
+  return `${pdfBase}/page-${String(n).padStart(4, '0')}.pdf`;
+}
+
+async function getPdfDoc(url) {
+  if (PDF_DOC_CACHE.has(url)) {
+    const d = PDF_DOC_CACHE.get(url);
+    PDF_DOC_CACHE.delete(url);
+    PDF_DOC_CACHE.set(url, d);
+    return d;
+  }
+  const doc = await pdfjsLib.getDocument({ url, disableAutoFetch: true }).promise;
+  PDF_DOC_CACHE.set(url, doc);
+  while (PDF_DOC_CACHE.size > PDF_DOC_MAX) {
+    const [k, d] = PDF_DOC_CACHE.entries().next().value;
+    PDF_DOC_CACHE.delete(k);
+    try { d.destroy(); } catch (e) {}
+  }
+  return doc;
+}
+
+/* ============================================================
+   加载索引
+   ============================================================ */
+async function loadAll() {
+  if (!PDFJS_OK) {
+    $('status').textContent = '❌ PDF.js 加载失败，请检查 lib/pdf.min.js';
+    return;
+  }
+  let done = 0;
+  await Promise.all(FILES.map(async (f) => {
+    try {
+      const res = await fetch(f.index);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      state.indexes[f.id] = await res.json();
+    } catch (e) {
+      console.error('索引加载失败', f.id, e);
+    }
+    done++;
+    $('status').textContent = `索引加载 ${done}/${FILES.length}`;
+  }));
+  const totalPages = Object.values(state.indexes)
+    .reduce((s, d) => s + (d.numPages || 0), 0);
+  $('status').textContent = `✅ 就绪 · ${totalPages} 页`;
+}
+
+/* ============================================================
+   搜索工具
+   ============================================================ */
+function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function buildRegex(query) {
+  const terms = query.trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
+  if (!terms.length) return null;
+  return new RegExp(terms.join('|'), 'gi');
+}
+function highlight(text, regex) {
+  if (!regex) return escapeHtml(text);
+  regex.lastIndex = 0;
+  let html = '', last = 0, m;
+  while ((m = regex.exec(text)) !== null) {
+    if (m[0].length === 0) { regex.lastIndex++; continue; }
+    html += escapeHtml(text.slice(last, m.index));
+    html += '<mark>' + escapeHtml(m[0]) + '</mark>';
+    last = m.index + m[0].length;
+  }
+  html += escapeHtml(text.slice(last));
+  return html;
+}
+
+function collectSnippets(text, terms) {
+  const lower = text.toLowerCase();
+  const spans = [];
+  for (const t of terms) {
+    let from = 0;
+    while (true) {
+      const i = lower.indexOf(t, from);
+      if (i === -1) break;
+      spans.push([i, i + t.length]);
+      from = i + t.length;
+    }
+  }
+  const total = spans.length;
+  if (!total) return { snippets: [], total: 0, shown: 0 };
+
+  spans.sort((a, b) => a[0] - b[0]);
+
+  const merged = [];
+  for (const s of spans) {
+    const last = merged[merged.length - 1];
+    if (last && s[0] <= last.end) {
+      last.end = Math.max(last.end, s[1]);
+    } else {
+      merged.push({ start: s[0], end: s[1] });
+    }
+  }
+
+  const groups = [];
+  let cur = [merged[0]];
+  for (let k = 1; k < merged.length; k++) {
+    const prev = merged[k - 1], next = merged[k];
+    if (next.start - prev.end <= MERGE_GAP) {
+      cur.push(next);
+    } else {
+      groups.push(cur);
+      cur = [next];
+    }
+  }
+  groups.push(cur);
+
+  const snippets = [];
+  const keptGroups = [];
+  for (const g of groups) {
+    if (snippets.length >= SNIPPET_MAX) break;
+    snippets.push(buildSnippetText(text, g));
+    keptGroups.push(g);
+  }
+
+  let shown;
+  if (keptGroups.length === groups.length) {
+    shown = total;
+  } else {
+    shown = 0;
+    for (const g of keptGroups) {
+      const gStart = g[0].start;
+      const gEnd = g[g.length - 1].end;
+      for (const s of spans) {
+        if (s[0] >= gStart && s[1] <= gEnd) shown++;
+      }
+    }
+  }
+
+  return { snippets, total, shown };
+}
+
+function buildSnippetText(text, group) {
+  const R = SNIPPET_RADIUS;
+  const parts = [];
+
+  const firstStart = Math.max(0, group[0].start - R);
+  if (firstStart > 0) parts.push('…');
+  parts.push(text.slice(firstStart, group[0].end));
+
+  for (let k = 1; k < group.length; k++) {
+    const prevEnd = group[k - 1].end;
+    const currStart = group[k].start;
+    const gapLen = currStart - prevEnd;
+
+    if (gapLen > INNER_GAP) {
+      const half = Math.floor(INNER_GAP / 2);
+      parts.push(text.slice(prevEnd, Math.min(prevEnd + half, currStart)));
+      parts.push('…');
+      parts.push(text.slice(Math.max(currStart - half, prevEnd), currStart));
+    } else {
+      parts.push(text.slice(prevEnd, currStart));
+    }
+    parts.push(text.slice(currStart, group[k].end));
+  }
+
+  const lastEnd = group[group.length - 1].end;
+  const tailEnd = Math.min(text.length, lastEnd + R);
+  parts.push(text.slice(lastEnd, tailEnd));
+  if (tailEnd < text.length) parts.push('…');
+
+  return parts.join('').replace(/\s+/g, ' ').trim();
+}
+
+/* ============================================================
+   执行搜索
+   ============================================================ */
+function doSearch() {
+  const q = $('searchInput').value.trim();
+  state.query = q;
+
+  if (!q) { state.results = []; render(); return; }
+
+  const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const targetIds = state.category === 'all'
+    ? FILES.map(f => f.id)
+    : [state.category];
+
+  const out = [];
+  outer:
+  for (const fid of targetIds) {
+    const idx = state.indexes[fid];
+    if (!idx) continue;
+    for (const [pageNum, text] of idx.pages) {
+      const lower = text.toLowerCase();
+      let ok = true;
+      for (const t of terms) {
+        if (lower.indexOf(t) === -1) { ok = false; break; }
+      }
+      if (!ok) continue;
+
+      const { snippets, total, shown } = collectSnippets(text, terms);
+      if (!snippets.length) continue;
+
+      out.push({
+        fileId: fid,
+        fileName: idx.name,
+        pageNum,
+        snippets,
+        matchCount: total,
+        shownCount: shown,
+      });
+      if (out.length >= MAX_TOTAL) break outer;
+    }
+  }
+  state.results = out;
+  render();
+}
+
+/* ============================================================
+   渲染结果
+   ============================================================ */
+function render() {
+  const box  = $('results');
+  const meta = $('resultsMeta');
+  box.innerHTML = '';
+
+  if (!state.query) {
+    meta.textContent = '输入关键词开始搜索';
+    box.innerHTML = '<div class="empty">支持多词，如「心电图 心律失常」</div>';
+    return;
+  }
+  if (!state.results.length) {
+    meta.textContent = `“${state.query}” 无匹配`;
+    box.innerHTML = '<div class="empty">没有找到匹配内容</div>';
+    return;
+  }
+
+  const fileCount = new Set(state.results.map(r => r.fileId)).size;
+  const totalMatches = state.results.reduce((s, r) => s + r.matchCount, 0);
+  meta.textContent = `命中 ${state.results.length} 页 · 共 ${totalMatches} 处匹配 · ${fileCount} 个文件`;
+
+  const regex = buildRegex(state.query);
+  const frag  = document.createDocumentFragment();
+
+  state.results.forEach((r, i) => {
+    const el = document.createElement('div');
+    el.className = 'result-item';
+    el.dataset.index = i;
+    const unit = unitOf(r.fileId);
+
+    let body = '';
+    r.snippets.forEach((sn) => {
+      body += '<div class="result-snippet">' + highlight(sn, regex) + '</div>';
+    });
+    const rest = r.matchCount - r.shownCount;
+    if (rest > 0) {
+      body += '<div class="result-more">…本页另有 ' + rest + ' 处匹配</div>';
+    }
+
+    el.innerHTML =
+      '<div class="result-head">' +
+        '<span class="result-file">' + escapeHtml(r.fileName) + '</span>' +
+        '<span class="result-page">第 ' + r.pageNum + ' ' + unit + '</span>' +
+      '</div>' + body;
+    el.addEventListener('click', () => openResult(i));
+    frag.appendChild(el);
+  });
+
+  box.appendChild(frag);
+}
+
+/* ============================================================
+   打开页面
+   ============================================================ */
+function openResult(i) {
+  const r = state.results[i];
+  if (!r) return;
+  document.querySelectorAll('.result-item').forEach((el) => {
+    el.classList.toggle('active', Number(el.dataset.index) === i);
+  });
+  showPage(r.fileId, r.pageNum);
+}
+
+let loadSeq = 0;
+let currentRenderTask = null;
+
+async function showPage(fileId, pageNum) {
+  const f   = FILES.find(x => x.id === fileId);
+  const idx = state.indexes[fileId];
+  if (!f || !idx) return;
+
+  const numPages = idx.numPages || idx.pages.length;
+  pageNum = Math.max(1, Math.min(numPages, pageNum));
+  state.current = { fileId, pageNum };
+
+  const unit = f.unit || '页';
+  $('viewerHint').style.display = 'none';
+  $('viewerTitle').textContent = `${f.name} · 第 ${pageNum} ${unit}`;
+  $('prevBtn').disabled = pageNum <= 1;
+  $('nextBtn').disabled = pageNum >= numPages;
+  $('pageInput').disabled = false;
+  $('goBtn').disabled = false;
+  $('pageInput').value = pageNum;
+  $('pageInput').max = numPages;
+  $('pageTotal').textContent = `/ ${numPages}`;
+  $('viewerScroll').scrollTop = 0;
+
+  if (IS_MOBILE()) document.body.classList.add('viewer-open');
+
+  if (currentRenderTask) {
+    try { currentRenderTask.cancel(); } catch (e) {}
+    currentRenderTask = null;
+  }
+
+  const canvas = $('pdfCanvas');
+  canvas.hidden = true;
+  $('loadingTip').classList.add('show');
+
+  const url = pdfUrl(f.pdfBase, pageNum);
+  const seq = ++loadSeq;
+
+  try {
+    const doc  = await getPdfDoc(url);
+    if (seq !== loadSeq) return;
+    const page = await doc.getPage(1);
+    if (seq !== loadSeq) return;
+
+    const scrollBox = $('viewerScroll');
+    const padding = 32;
+    const maxW = Math.max(200, scrollBox.clientWidth - padding);
+
+    const baseVp = page.getViewport({ scale: 1 });
+    let scale = maxW / baseVp.width;
+    scale = Math.max(0.5, Math.min(scale, 3));
+
+    const viewport = page.getViewport({ scale });
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width  = Math.floor(viewport.width  * dpr);
+    canvas.height = Math.floor(viewport.height * dpr);
+    canvas.style.width  = Math.floor(viewport.width)  + 'px';
+    canvas.style.height = Math.floor(viewport.height) + 'px';
+
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, viewport.width, viewport.height);
+
+    const task = page.render({ canvasContext: ctx, viewport });
+    currentRenderTask = task;
+    await task.promise;
+    currentRenderTask = null;
+    if (seq !== loadSeq) return;
+
+    const terms = state.query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (terms.length) {
+      try {
+        const textContent = await page.getTextContent();
+        if (seq !== loadSeq) return;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        drawHighlights(ctx, textContent, viewport, terms);
+      } catch (e) {
+        console.warn('文本高亮失败', e);
+      }
+    }
+
+    $('loadingTip').classList.remove('show');
+    canvas.hidden = false;
+  } catch (e) {
+    if (e && e.name === 'RenderingCancelledException') return;
+    if (seq !== loadSeq) return;
+    console.error('PDF 加载失败', e);
+    $('loadingTip').classList.remove('show');
+    canvas.hidden = true;
+    $('viewerHint').style.display = '';
+    $('viewerHint').textContent = 'PDF 加载失败，请检查 ' + url;
+  }
+}
+
+/* ============================================================
+   在 canvas 上绘制高亮
+   ============================================================ */
+function drawHighlights(ctx, textContent, viewport, terms) {
+  const items = textContent.items;
+  if (!items || !items.length) return;
+
+  const chars = [];
+  let fullText = '';
+
+  for (const item of items) {
+    const str = item.str;
+    if (!str) continue;
+
+    const m = pdfjsLib.Util.transform(viewport.transform, item.transform);
+    const fontHeight = Math.hypot(m[2], m[3]);
+    if (!fontHeight) continue;
+
+    const left = m[4];
+    const top  = m[5] - fontHeight;
+    const n    = str.length;
+    const charW = (item.width * viewport.scale) / n;
+
+    for (let i = 0; i < n; i++) {
+      chars.push({
+        x: left + charW * i,
+        y: top,
+        w: charW,
+        h: fontHeight,
+        idx: fullText.length,
+      });
+      fullText += str[i];
+    }
+  }
+  if (!chars.length) return;
+
+  const lower = fullText.toLowerCase();
+  const hit = new Uint8Array(fullText.length);
+  let any = false;
+
+  for (const term of terms) {
+    if (!term) continue;
+    let from = 0;
+    while (true) {
+      const i = lower.indexOf(term, from);
+      if (i === -1) break;
+      const end = i + term.length;
+      for (let k = i; k < end; k++) hit[k] = 1;
+      any = true;
+      from = end;
+    }
+  }
+  if (!any) return;
+
+  ctx.save();
+  ctx.fillStyle = 'rgba(255, 214, 51, 0.45)';
+
+  for (let i = 0; i < chars.length; i++) {
+    const c = chars[i];
+    if (!hit[c.idx]) continue;
+    let x2 = c.x + c.w;
+    let j = i + 1;
+    while (
+      j < chars.length &&
+      hit[chars[j].idx] &&
+      Math.abs(chars[j].y - c.y) < 1 &&
+      chars[j].x - x2 < 1.5
+    ) {
+      x2 = chars[j].x + chars[j].w;
+      j++;
+    }
+    ctx.fillRect(c.x - 0.6, c.y - 0.8, (x2 - c.x) + 1.2, c.h + 1.6);
+    i = j - 1;
+  }
+
+  ctx.restore();
+}
+
+/* ============================================================
+   翻页 / 跳转
+   ============================================================ */
+function goPrev() {
+  const { fileId, pageNum } = state.current;
+  if (fileId && pageNum > 1) showPage(fileId, pageNum - 1);
+}
+function goNext() {
+  const { fileId, pageNum } = state.current;
+  const idx = state.indexes[fileId];
+  if (!idx) return;
+  const total = idx.numPages || idx.pages.length;
+  if (pageNum < total) showPage(fileId, pageNum + 1);
+}
+function goToPage() {
+  const { fileId } = state.current;
+  const idx = state.indexes[fileId];
+  if (!idx) return;
+  const total = idx.numPages || idx.pages.length;
+  let n = parseInt($('pageInput').value, 10);
+  if (isNaN(n)) { $('pageInput').value = state.current.pageNum; return; }
+  n = Math.max(1, Math.min(total, n));
+  showPage(fileId, n);
+}
+
+/* ============================================================
+   事件绑定
+   ============================================================ */
+$('searchBtn').addEventListener('click', () => {
+  doSearch();
+  $('searchInput').blur();
+});
+$('searchInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); doSearch(); $('searchInput').blur(); }
+});
+let searchTimer = null;
+$('searchInput').addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(doSearch, 200);
+});
+
+$('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-cat]');
+  if (!btn) return;
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.category = btn.dataset.cat;
+  doSearch();
+  if (IS_MOBILE()) document.body.classList.remove('viewer-open');
+});
+
+$('backBtn').addEventListener('click', () => {
+  document.body.classList.remove('viewer-open');
+});
+$('prevBtn').addEventListener('click', goPrev);
+$('nextBtn').addEventListener('click', goNext);
+$('goBtn').addEventListener('click', goToPage);
+$('pageInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); goToPage(); $('pageInput').blur(); }
+});
+
+document.addEventListener('keydown', (e) => {
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+  if (e.key === 'ArrowLeft')  goPrev();
+  if (e.key === 'ArrowRight') goNext();
+});
+
+/* ============================================================
+   手机端滑动翻页
+   ============================================================ */
+(function bindSwipe() {
+  const el = $('viewerScroll');
+  let x0 = 0, y0 = 0, t0 = 0;
+  el.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    x0 = e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+    t0 = Date.now();
+  }, { passive: true });
+  el.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    const dy = e.changedTouches[0].clientY - y0;
+    const dt = Date.now() - t0;
+    if (Math.abs(dx) < 60) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (dt > 600) return;
+    if (dx < 0) goNext();
+    if (dx > 0) goPrev();
+  }, { passive: true });
+})();
+
+window.addEventListener('resize', () => {
+  if (!IS_MOBILE()) document.body.classList.remove('viewer-open');
+});
+
+/* ============================================================
+   启动
+   ============================================================ */
+loadAll();
+</script>
+</body>
+</html>
