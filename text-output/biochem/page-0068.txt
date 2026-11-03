@@ -1,13 +1,54 @@
-每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+1.9 核苷酸代谢
+ 随课更新 每日计划配套anki精选答疑 核心精讲定期答疑思维导图公众号⼩凯的医学之路真题解析 专题串联 易错小结 考点补充笔记为⼆次创作，版权为天天师兄所有阶段考试 天天师兄
 
- 高钾血症时阳离子交换树脂可以把K+吸过来 带正电
+ 核苷酸代谢小结1 = * * " ) 1 尿嘧啶核苷脱氧胸腺嘧啶核苷
+ 磷酸 尿苷 Gln+CO2+ATP 胸苷激酶 激酶
+ 腺嘌呤核苷 AMP IMP/GMP CPS-Ⅱ ← UMP/dTMP/OMP 腺苷激酶$ 氨基甲酰磷酸
+ APRT HGPRT （X3L-N3自毁）σ 嘧啶磷酸核 天冬氨酸氨基 天冬氨酸
+ I/G 糖转移酶 U/T/ 甲酰转移酶 A 乳清酸 氨基甲酰天冬氨酸
+ !PRPP合成酶 PRPP合成酶 PRPP 磷酸核糖VV PRPP
+ NADPH 乳清酸
+ PRPP酰胺转移酶
+ Gln G-6-P
+ OMP
+ PRA ↓
+ G UMP ! ↓
+ IMP IMP脱氢酶 UDP
+ 天冬氨酸 V腺苷酸代琥
+ 珀酸合成酶 XMP UTP dUDP
+ 腺苷酸代琥珀酸 GMP合成酶 Gln Gln CTP合成酶
+ 腺苷酸代琥 5VV10
+ 珀酸裂解酶 N，N-CH2-FH4 GMP CTP→CDP→dCDP→dCMP→dUMP⇌ dTMP
+ AMP NADPH （主要） 胸苷酸合酶
+ VVV↓
+ NADPH GDP →VdGDP
+ VVV↓
+dADPV← ADP
+ GTP A ATP
+ 分解 分解
 
- 电荷量小→电场力小→扒的不够紧→先洗脱
+ . VVVVTV VC/UV
+ 黄嘌呤氧化酶 ↓ ↓
+ β-氨基异丁酸 β-丙氨酸
+ VVVVVV尿酸
+ NH3、CO2 NH3、CO2
+ VV
+结合糖代谢 UDPG
+ 糖原
+ G-1-P 乳酸
 
-氨基端 羧基端
-
- - 5 -
-
- 不缺氧vHL-HIFX→被泛素打标记（消耗ATP）→被蛋白酶体降解
- 缺氧HIF增多，结合EPO基因的增强子，肾产生EPO增加
- 70
+ 复合体VVVVVVV酶VVVVVVVVVVVVVVVVV辅基
+ GVVVVVVVVVG-6-PVVVVVVVVVV丙酮酸! ⅠVVVVVNADH-泛醌还原酶VVVVVVVFMN，Fe-S
+ ⅡVVVV琥珀酸-泛醌还原酶VVVVVVVFAD，Fe-S
+ 脂肪酸 ⅢVVVV泛醌-细胞色素c还原酶VVVV血红素，Fe-S
+ 胆固醇 乙酰CoA ⅣVVVV细胞色素c氧化酶VVVVVVVVV血红素，CuA，CuB
+ 磷酸核糖、NADPH
+ 脱氧核苷酸 NADH+H+ 呼吸链
+ TCA H2O 等… VVFADH2
+ ADP ATP
+ CO2
+ PRPP 天冬氨酸
+ 乳清酸VVVV氨基甲酰天冬氨酸VVVVVVVCPSVVVVGln、CO2、ATP
+ PRA ... - 5 -
+ 1 UMP
+ IMP -6 4-

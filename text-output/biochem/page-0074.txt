@@ -1,45 +1,43 @@
-尿嘧啶核苷 脱氧胸腺嘧啶核苷
- 胸苷激酶（与恶性肿瘤恶性程度息息相关
- 磷酸 尿苷激酶
- dTMP
- 腺嘌呤核苷 AMP IMP/GMP UMP/TMP/OMP（乳清酸核苷酸）
+1.10 胆⾊素代谢
+随课更新 每日计划配套anki精选答疑 核心精讲定期答疑思维导图公众号⼩凯的医学之路真题解析 专题串联 易错小结 考点补充笔记为⼆次创作，版权为天天师兄所有阶段考试 天天师兄
 
- 次黄嘌呤鸟嘌呤磷 腺嘌呤磷酸 酸核糖转移酶 嘧啶磷酸 Gln+CO2+ATP哺乳 核糖转移酶 U/T/乳清酸 A APRT HGPRT X L-N综合征 核糖转移 （含嘧啶环） CPS-II I/G 酶 - CPS
- -PRPP合成酶 PRPP合成酶 - 天冬氨酸氨基 XUMP PRPP 磷酸核糖X PRPP CTP 甲酰转移酶
- 细菌
- 氨基甲酰天冬氨酸 PRPP酰胺 NADPH 转移酶Gln ↓
- 乳清酸
- PRA G-6-PXXX (含嘧啶环)
- XOMP I
- IMP G
- 腺苷酸代琥 XUMP IMP脱氢酶
- 珀酸合成酶
- 天冬氨酸 UDP 二磷酸水平脱氧
- 腺苷酸代琥珀酸 XMP 我 UTP dUDP腺苷酸代琥 GMP合 谷氨酰胺 5 10
- Gln CTP合成酶 N0N0-CH2-FH4(dUMP珀酸裂解酶 成酶
- AMP GMP CTP CDPX→XdCDPX→XdCMPX dUMP dTMP
- 胸苷酸合酶
-dADP ADP GDPXXXXdGDP
- NADPH NADPH 核心反应
- ATP GTP
+ 游离 （胞浆）
 
- 分解
- 黄嘌呤氧化酶 分解
- 尿酸 T C、U
+ 白蛋白 血红素加氧酶
+ 游离 微粒体
+ 葡萄糖醛酸转移酶
+ 一清二白
+ UDP-GA不是UDPG
+ （生成的第一个胆色素） 结合胆红素
+ 胆绿素还原酶
 
- β氨基异丁酸 β丙氨酸
- NH3、CO2
+ 游离
+ 胆素原的肠肝循环
 
-  
- 甲氨蝶呤 5-FU 阿糖胞苷 6-MP 别嘌呤醇 氮杂丝氨酸
- 叶酸 T 胞苷 I I 谷氨酰胺
- FH2还原酶 胸苷酸合酶 CDP还原酶 嘌呤核苷酸 嘌呤分解 PRPP酰胺转移酶 X X CDPX→dCDP 合成的酶 黄嘌呤氧化酶 PRPP PRA
- FH4 dUMPX→XdTMP 干扰：嘧啶 GMP合成酶 X 核苷酸里的酶 XMP GMP
- 一碳单位
- CTP合成酶
- UTP CTP
- 嘌呤核苷酸 dUMPX→dTMP CPS-II
- 5 10 ↑ Gln+CO2 CPS
- NXNX-CH2-FH4
+NADPH的作用
+①参与胆固醇的合成
+②参与脂肪酸的合成
+③参与脱氧核苷酸的合成
+④参与胆红素的合成
+⑤参与氨基酸的合成
 
- 高分经验 | 学习方法 | 笔记勘误 | 公众号：月落星沉西综笔记 76
+ ①胆色素：胆绿素、胆红素、胆素原（胆原）、胆素
+ ②尿三胆：尿胆素原（尿胆原）、尿胆素、尿胆红素
+ ③具有铁卟啉：血红蛋白、肌红蛋白、细胞色素、过氧化物酶、过氧化氢酶→胆色素 雪姬戏蝈蝈
+ UDPGA ⭐
+ ④
+ UCB - CB
+ PAPS
+
+ 含硫氨基酸经过代谢可以生成硫酸根
+ 硫酸根的活化形式：三磷酸腺苷，五磷酸硫酸PAPS
+
+ 先天性黄疸
+
+ combine
+
+ 一定有排泄问题
+
+ - 2 - um
+
+ - 70 -

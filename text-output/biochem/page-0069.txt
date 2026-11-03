@@ -1,51 +1,35 @@
-每日计划 精选答疑 核心精讲 思维导图 真题解析 专题串联 易错小结 考点补充 阶段考试 天天师兄
+1.9 核苷酸代谢
+ 随课更新 每日计划配套anki精选答疑 核心精讲定期答疑思维导图公众号⼩凯的医学之路真题解析 专题串联 易错小结 考点补充笔记为⼆次创作，版权为天天师兄所有阶段考试 天天师兄
 
- 生物化学 核苷酸代谢 & 胆色素代谢 & 生物转化 & 酶 & 维生素
+ 专题串联·核苷酸抗代谢物 化疗药
+ 跨章节和学科、用核心串核心，以便将重要考点串联成网
 
- 核心精讲·核苷酸代谢
- 核心精讲很详细，帮助同学们更好地理解和记忆思维导图
+ 类似 从头合成 竞争 性抑制 干扰：嘧啶核苷酸里的酶 抑制
+ 6-巯基嘌呤/6-MP I !PRPP 酰胺转移酶、HGPRT、APRT 等 合成嘌呤核苷酸
+ 别嘌呤醇 I 黄嘌呤氧化酶 补救合成 分别 分解嘌呤核苷酸 更重要
+ （治疗痛风） 合成嘌呤核苷酸的酶 合成嘌呤核苷酸
+ 阿糖胞苷 胞苷 CDP 还原酶 脱氧 CDPQQQQdCDP 合成dCDP
+ 5-氟尿嘧啶/5-FU T 福特 胸苷酸合酶 合成dTMP（dUMP→dTMP）
+ 甲氨蝶呤MTX 叶酸 FH2 还原酶 需 N，N-CH2-FH45VV10 合成dTMP（dUMP→dTMP）
+ 枯叶蝶 叶酸VVVVVVFH2VVVVVVVFH4 一碳单位放两边合成嘌呤核苷酸 抑制4个酶 FH2还原酶 FH2还原酶（一碳单位载体）
+ 氮杂丝氨酸 Gln ① PRPP 酰胺转移酶、CPS-Ⅱ等② 合成嘌呤和嘧啶核苷酸
+ 五谷杂粮 规律：嘧啶核苷酸合成不需要一碳单位
+ 酰胺转移酶
+ PRPP PRA 特殊：dUMP→dTMP有一碳单位
+ 嘌呤VGln参与 GMP合成酶QQQQ XMP GMP
+ CTP合成酶 UTP CTP
+ 嘧啶VGln参与 CPS-Ⅱ Gln+CO2 CPS
 
- 一、概述
- G通过磷酸戊糖途径提供磷酸核糖
- 脱氧
- 脱氧
- 脱氧核糖核酸(DNA)
- “捡现成的” 氨基酸等
- 补救合成 从头合成
+ 甲氨蝶呤VVVV5-FuVVVV阿糖胞苷VVVV6-MPVVVVV别嘌呤醇VVVV氮杂丝氨酸
+ 叶酸VVVVVVVVTVVVVVVVV胞苷VVVVVVVVIVVVVVVVVVVIVVVVVVVV谷氨酰胺
+ 抑制FH2还原酶 胸苷酸合酶 CDP还原酶 嘌呤 嘌呤 PRPPQQQQQQQQQQQPRA酰胺转移酶
+ X σ CDP→dCDP 核苷酸 分解 XMPQQQQQQQQQQQGMPGMP合成酶
+ QQQQQFH4 dUMP→dTMP 尿是黄的 CTP合成酶 1 X UTPQQQQQQQQQQQQCTP
+ 尿是酸的 CPS合成酶-II
+ QQQ一碳单位 Gln+CO2QQQQQQQQQCPS
 
- 嘌呤碱基 “大逆顺小左肩起
- 天冬氨酸在左肩（不是天冬酰胺）
- X头顶干净的CO2
- X底坐谷氨酰胺（不是谷氨酸）
- X剩下两边是一碳”
+嘌呤核苷酸 dUMP→dTMP
 
- 嘧啶碱基 嘌呤碱基
- CO2 Gly
- 4
- 5 N 7 3 C 5 1 6C
- AspX→ N C N C
- Gln GPS ←Asp C 8
- 嘧啶碱基 CO2 C C C C I N 2 N 6 2 N 4
- 顺时针编号：保证N的序号最小 3 9 1
- CO2 ATP
- “左二为氨甲酰(谷氨酰胺+CO2)
- X右四为天门冬”
+ - 6 -
 
- 谷氨酰胺Gln 嘧啶碱基：C胞嘧啶、U尿嘧啶、T胸腺嘧啶
-
- 就是嘧啶碱基的原料
- ①嘌呤和嘧啶碱基的共同从头合成原料：天冬氨酸、谷氨酰胺、CO2
- ②嘌呤核苷酸和嘧啶核苷酸的共同从头合成原料：天冬氨酸、谷氨酰胺、CO2、磷酸核糖（活化形
- 式磷酸核糖焦磷酸PRPP）高能化合物
- ③PRPP 合成酶同时参与嘌呤核苷酸、嘧啶核苷酸的合成，PRPP 合成酶同时接受嘌呤核苷酸、嘧啶
- 核苷酸的负反馈以协调它们的合成速度
-
- -
- 嘌呤核苷酸 PRPP合成酶
-GXXXXXXX磷酸核糖XXXXXXXXXXXXXXXPRPP
- - 1 -
- 嘧啶核苷酸
- -
-
- 高分经验 | 学习方法 | 笔记勘误 | 公众号：月落星沉西综笔记
- 71
+ -6 5-
